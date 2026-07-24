@@ -64,7 +64,7 @@
     btn.addEventListener('click', () => applyLang(btn.dataset.langBtn, true));
   });
 
-  applyLang(localStorage.getItem('ak-lang') || 'en', false);
+  applyLang(localStorage.getItem('ak-lang') || 'de', false);
 })();
 
 /* ==========================================================================
