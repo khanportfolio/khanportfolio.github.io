@@ -1079,6 +1079,7 @@ html[lang="de"] .media-img-wrap::after {
   gap: 18px;
 }
 .form-row { display: flex; flex-direction: column; gap: 8px; }
+.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .form-row label { font-size: .85rem; font-weight: 600; color: var(--text-dim); }
 .form-row input, .form-row textarea {
   background: var(--surface-2);

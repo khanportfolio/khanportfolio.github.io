@@ -375,17 +375,19 @@ function startTyping(elId, words) {
   const messages = {
     en: {
       invalid: 'Please fill in every field with a valid email address.',
-      opening: 'Opening your email client...',
-      sent: 'Thanks! Your email app should now be open with the message ready to send.'
+      sending: 'Sending...',
+      sent: 'Thanks! Your message has been sent — I\'ll get back to you soon.',
+      failed: 'Something went wrong sending that. Please email me directly at arhan.khan.careerdemands@gmail.com instead.'
     },
     de: {
       invalid: 'Bitte fülle alle Felder mit einer gültigen E-Mail-Adresse aus.',
-      opening: 'E-Mail-Programm wird geöffnet ...',
-      sent: 'Danke! Dein E-Mail-Programm sollte jetzt mit der fertigen Nachricht geöffnet sein.'
+      sending: 'Wird gesendet ...',
+      sent: 'Danke! Deine Nachricht wurde gesendet — ich melde mich bald bei dir.',
+      failed: 'Beim Senden ist etwas schiefgelaufen. Bitte schreib mir direkt an arhan.khan.careerdemands@gmail.com.'
     }
   };
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const lang = document.documentElement.lang === 'de' ? 'de' : 'en';
@@ -402,17 +404,41 @@ function startTyping(elId, words) {
       return;
     }
 
+    if (form.botcheck && form.botcheck.checked) return;
+
     status.classList.remove('error');
-    status.textContent = t.opening;
+    status.textContent = t.sending;
 
-    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:arhan.khan.careerdemands@gmail.com?subject=${subject}&body=${body}`;
+    const submitBtn = form.querySelector('button[type="submit"]:not([hidden])');
+    if (submitBtn) submitBtn.disabled = true;
 
-    setTimeout(() => {
-      status.textContent = t.sent;
-      form.reset();
-    }, 600);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: form.access_key.value,
+          subject: form.subject.value,
+          name,
+          email,
+          message
+        })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        status.textContent = t.sent;
+        form.reset();
+      } else {
+        status.textContent = t.failed;
+        status.classList.add('error');
+      }
+    } catch (err) {
+      status.textContent = t.failed;
+      status.classList.add('error');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 })();
 
