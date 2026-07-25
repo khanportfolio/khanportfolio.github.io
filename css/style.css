@@ -934,7 +934,8 @@ html[lang="de"] .media-img-wrap::after {
   border: 1px solid var(--border);
   background: var(--surface-2);
 }
-.detail-diagram img { width: 100%; height: auto; display: block; }
+.detail-diagram img { width: 100%; height: auto; }
+.diagram-landscape { display: block; }
 .diagram-portrait { display: none; }
 
 @media (max-width: 700px) {
