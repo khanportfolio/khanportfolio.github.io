@@ -173,16 +173,18 @@ function startTyping(elId, words) {
 (function typedText() {
   startTyping('typed', [
     'production software.',
+    'AI automation that saves hours.',
+    'web & app development.',
     'AI-powered tools.',
-    'automation that saves hours.',
     'CRMs that close deals.',
     'businesses, end-to-end.'
   ]);
 
   startTyping('typed-de', [
     'produktionsreife Software.',
+    'KI-Automatisierung, die Zeit spart.',
+    'Web- & App-Entwicklung.',
     'KI-gestützte Tools.',
-    'Automatisierung, die Zeit spart.',
     'CRMs, die Deals abschließen.',
     'Unternehmen, von A bis Z.'
   ]);
