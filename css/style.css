@@ -3,9 +3,9 @@
    ========================================================================== */
 
 :root {
-  --accent-1: #6d5efc;
-  --accent-2: #ff6584;
-  --accent-3: #ffb648;
+  --accent-1: #ff6a3d;
+  --accent-2: #ff9142;
+  --accent-3: #ffc978;
   --gradient: linear-gradient(120deg, var(--accent-1), var(--accent-2) 55%, var(--accent-3));
 
   --bg: #0b0d12;
@@ -21,31 +21,32 @@
   --radius-sm: 10px;
   --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-serif: 'Instrument Serif', Georgia, serif;
 }
 
 :root[data-theme="light"] {
-  --bg: #f7f7fb;
-  --bg-alt: #ffffff;
+  --bg: #fdf6ee;
+  --bg-alt: #fffaf4;
   --surface: #ffffff;
-  --surface-2: #f1f2f8;
-  --border: #e4e6ef;
-  --text: #14161f;
-  --text-dim: #52586b;
-  --text-faint: #868da0;
-  --shadow: 0 20px 40px -24px rgba(20,22,31,.25);
+  --surface-2: #f6ece0;
+  --border: #efe1d0;
+  --text: #201812;
+  --text-dim: #6b5c4d;
+  --text-faint: #9c8b78;
+  --shadow: 0 20px 40px -24px rgba(60,36,16,.18);
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --bg: #f7f7fb;
-    --bg-alt: #ffffff;
+    --bg: #fdf6ee;
+    --bg-alt: #fffaf4;
     --surface: #ffffff;
-    --surface-2: #f1f2f8;
-    --border: #e4e6ef;
-    --text: #14161f;
-    --text-dim: #52586b;
-    --text-faint: #868da0;
-    --shadow: 0 20px 40px -24px rgba(20,22,31,.25);
+    --surface-2: #f6ece0;
+    --border: #efe1d0;
+    --text: #201812;
+    --text-dim: #6b5c4d;
+    --text-faint: #9c8b78;
+    --shadow: 0 20px 40px -24px rgba(60,36,16,.18);
   }
 }
 
@@ -125,9 +126,9 @@ ul { list-style: none; }
 .btn-primary {
   background: var(--gradient);
   color: #fff;
-  box-shadow: 0 10px 25px -10px rgba(109,94,252,.6);
+  box-shadow: 0 10px 25px -10px rgba(255,106,61,.6);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px rgba(109,94,252,.7); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -12px rgba(255,106,61,.7); }
 .btn-ghost {
   background: transparent;
   color: var(--text);
@@ -313,7 +314,7 @@ ul { list-style: none; }
   position: absolute;
   top: -20%; right: -10%;
   width: 620px; height: 620px;
-  background: radial-gradient(circle, rgba(109,94,252,.28), transparent 70%);
+  background: radial-gradient(circle, rgba(255,106,61,.28), transparent 70%);
   filter: blur(10px);
   z-index: -1;
 }
@@ -322,7 +323,7 @@ ul { list-style: none; }
   position: absolute;
   bottom: -20%; left: -10%;
   width: 520px; height: 520px;
-  background: radial-gradient(circle, rgba(255,101,132,.22), transparent 70%);
+  background: radial-gradient(circle, rgba(255,145,66,.22), transparent 70%);
   z-index: -1;
 }
 
@@ -929,10 +930,10 @@ html[lang="de"] .media-img-wrap::after {
 .project-card-featured {
   grid-column: 1 / -1;
   flex-direction: row;
-  box-shadow: 0 24px 55px -24px rgba(109,94,252,.4);
+  box-shadow: 0 24px 55px -24px rgba(255,106,61,.4);
 }
 .project-card-featured:hover {
-  box-shadow: 0 30px 65px -20px rgba(109,94,252,.5);
+  box-shadow: 0 30px 65px -20px rgba(255,106,61,.5);
 }
 .project-card-featured::before {
   content: '';
@@ -1376,7 +1377,7 @@ html[lang="de"] .media-img-wrap::after {
     flex: none;
     width: 84px; height: 84px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(109,94,252,.14), rgba(255,101,132,.14));
+    background: linear-gradient(135deg, rgba(255,106,61,.14), rgba(255,145,66,.14));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1411,8 +1412,8 @@ html[lang="de"] .media-img-wrap::after {
     font-size: 1.15rem;
     margin-bottom: 10px;
   }
-  .edu-icon-1, .edu-icon-3 { background: rgba(109,94,252,.14); }
-  .edu-icon-2 { background: rgba(255,101,132,.14); }
+  .edu-icon-1, .edu-icon-3 { background: rgba(255,106,61,.14); }
+  .edu-icon-2 { background: rgba(255,145,66,.14); }
 
   .edu-loc { display: flex; align-items: center; }
   .edu-pin { display: inline-block; margin-right: 5px; }
@@ -1739,4 +1740,94 @@ html[lang="de"] .media-img-wrap::after {
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   Desktop/laptop-only redesign (>900px) — warm hero, nav accent, What I Do
+   Mobile/tablet (<=900px) is untouched: every rule below lives inside
+   @media (min-width: 901px), and the "off" states above it are inert
+   everywhere else.
+   ========================================================================== */
+.hero-lead-serif { font-style: normal; }
+.whatido-section { display: none; }
+
+@media (min-width: 901px) {
+  /* Nav: elegant serif wordmark instead of the gradient AK tile */
+  .brand-mark { display: none; }
+  .brand-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: -.01em;
+  }
+  .brand-text::after { content: '.'; color: var(--accent-1); font-style: normal; }
+
+  /* Eyebrow bullets become a small solid dot instead of a dash */
+  .eyebrow::before, .section-eyebrow::before {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent-1);
+    flex: none;
+  }
+
+  /* Hero greeting in a light serif italic, name stays the gradient wordmark */
+  .hero-lead-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Hero photo: large, sharp, front-and-center, warm glow behind it */
+  .hero-visual {
+    min-height: 480px;
+    z-index: 0;
+  }
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: -70px;
+    background: radial-gradient(circle at 55% 42%, rgba(255,145,66,.4), transparent 68%);
+    filter: blur(24px);
+    z-index: -1;
+  }
+  .avatar-frame {
+    width: 380px;
+    height: 440px;
+    border-radius: 28px;
+    padding: 0;
+    background: var(--surface-2);
+    box-shadow: 0 30px 60px -20px rgba(32,24,18,.35);
+  }
+  .avatar-frame img {
+    border-radius: 28px;
+    object-fit: cover;
+    object-position: 50% 15%;
+  }
+  .avatar-frame.no-photo::before { border-radius: 28px; }
+
+  /* What I Do — new 4-column section shown only on desktop */
+  .whatido-section { display: block; }
+  .whatido-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .whatido-item {
+    padding: 32px 28px 6px;
+    border-right: 1px solid var(--border);
+  }
+  .whatido-item:last-child { border-right: none; }
+  .whatido-num {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--text-faint);
+    margin-bottom: 18px;
+  }
+  .whatido-item h3 { font-size: 1.05rem; margin-bottom: 10px; }
+  .whatido-item p { font-size: .88rem; color: var(--text-dim); line-height: 1.55; }
 }
