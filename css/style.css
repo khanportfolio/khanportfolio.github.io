@@ -1771,14 +1771,21 @@ html[lang="de"] .media-img-wrap::after {
     flex: none;
   }
 
-  /* Hero greeting in a light serif italic, name stays the gradient wordmark */
+  /* Hero greeting in a light serif italic; name is solid, heavy, and dark — no gradient fill */
   .hero-lead-serif {
     font-family: var(--font-serif);
     font-style: italic;
     font-weight: 400;
   }
+  .hero h1 .text-gradient {
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    -webkit-text-fill-color: currentColor;
+    color: var(--text);
+  }
 
-  /* Hero photo: large, sharp, front-and-center, warm glow behind it */
+  /* Hero photo: large, sharp, front-and-center, soft grounded shadow (not a floating card) */
   .hero-visual {
     min-height: 480px;
     z-index: 0;
@@ -1787,7 +1794,7 @@ html[lang="de"] .media-img-wrap::after {
     content: '';
     position: absolute;
     inset: -70px;
-    background: radial-gradient(circle at 55% 42%, rgba(255,145,66,.4), transparent 68%);
+    background: radial-gradient(circle at 55% 42%, rgba(255,145,66,.32), transparent 68%);
     filter: blur(24px);
     z-index: -1;
   }
@@ -1797,7 +1804,7 @@ html[lang="de"] .media-img-wrap::after {
     border-radius: 28px;
     padding: 0;
     background: var(--surface-2);
-    box-shadow: 0 30px 60px -20px rgba(32,24,18,.35);
+    box-shadow: 0 18px 34px -18px rgba(32,24,18,.28);
   }
   .avatar-frame img {
     border-radius: 28px;
@@ -1805,6 +1812,14 @@ html[lang="de"] .media-img-wrap::after {
     object-position: 50% 15%;
   }
   .avatar-frame.no-photo::before { border-radius: 28px; }
+
+  /* Floating tech badges: calm and static instead of bouncing, flatter and more minimal */
+  .float-badge {
+    animation: none;
+    box-shadow: 0 6px 16px -8px rgba(32,24,18,.25);
+    font-size: .78rem;
+    padding: 8px 14px;
+  }
 
   /* What I Do — new 4-column section shown only on desktop */
   .whatido-section { display: block; }
