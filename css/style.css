@@ -616,6 +616,12 @@ ul { list-style: none; }
 
 @media (max-width: 800px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-card { padding: 22px 10px 20px; overflow: visible; }
+  .stat-num {
+    font-size: clamp(1.1rem, 5.5vw, 1.9rem);
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
 }
 
 /* ---------- Timeline ---------- */
