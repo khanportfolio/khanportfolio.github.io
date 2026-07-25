@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arhan Khan — CV</title>
+<meta name="description" content="Arhan Khan — Werkstudent Software Development & IT/Digital Operations. Curriculum Vitae.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236d5efc'/%3E%3Cstop offset='.5' stop-color='%23ff6584'/%3E%3Cstop offset='1' stop-color='%23ffb648'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-size='28' font-family='Arial,sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EAK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent-1: #6d5efc; --accent-2: #ff6584; --accent-3: #ffb648;
+    --gradient: linear-gradient(120deg, var(--accent-1), var(--accent-2) 55%, var(--accent-3));
+    --text: #16181f; --text-dim: #4c5165; --border: #e2e4ec; --bg-alt: #f7f7fb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+    line-height: 1.5;
+    background: #eceef4;
+    padding: 32px 16px;
+  }
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px -20px rgba(20,20,40,.25);
+    padding: 46px 50px 56px;
+  }
+  .toolbar {
+    max-width: 800px; margin: 0 auto 14px;
+    display: flex; justify-content: flex-end;
+  }
+  .print-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gradient); color: #fff; border: none;
+    padding: 11px 20px; border-radius: 999px; font-weight: 700; font-size: .9rem;
+    cursor: pointer; font-family: inherit;
+  }
+  header { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; border-bottom: 2px solid var(--text); padding-bottom: 18px; margin-bottom: 20px; }
+  h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: -.01em; }
+  .role { font-size: .98rem; color: var(--accent-1); font-weight: 700; margin-top: 2px; }
+  .contact { text-align: right; font-size: .82rem; color: var(--text-dim); line-height: 1.7; }
+  .contact a { color: var(--text-dim); text-decoration: none; }
+
+  section { margin-bottom: 20px; }
+  h2 {
+    font-size: .74rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent-1); font-weight: 800; margin-bottom: 10px;
+    padding-bottom: 4px; border-bottom: 1px solid var(--border);
+  }
+  .profile { font-size: .88rem; color: var(--text-dim); }
+
+  .entry { margin-bottom: 13px; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .entry-title { font-weight: 700; font-size: .92rem; }
+  .entry-org { font-size: .82rem; color: var(--accent-2); font-weight: 600; }
+  .entry-date { font-size: .76rem; color: var(--text-dim); font-family: ui-monospace, monospace; white-space: nowrap; }
+  .entry ul { margin: 5px 0 0 18px; }
+  .entry li { font-size: .8rem; color: var(--text-dim); margin-bottom: 2px; }
+
+  .proj-title { font-weight: 700; font-size: .88rem; }
+  .proj-stack { font-size: .74rem; color: var(--accent-1); font-family: ui-monospace, monospace; margin: 1px 0 3px; }
+  .proj-desc { font-size: .79rem; color: var(--text-dim); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .skill-group { margin-bottom: 10px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-label { font-size: .78rem; font-weight: 700; margin-bottom: 4px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 5px; }
+  .pill { font-size: .7rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 999px; padding: 3px 9px; color: var(--text-dim); }
+
+  .edu-row { display: flex; justify-content: space-between; gap: 10px; font-size: .82rem; margin-bottom: 6px; }
+  .edu-row strong { display: block; font-size: .85rem; }
+  .edu-loc { color: var(--text-dim); font-size: .76rem; }
+  .edu-date { color: var(--text-dim); font-size: .76rem; font-family: ui-monospace, monospace; white-space: nowrap; }
+
+  .lang-row { display: flex; justify-content: space-between; font-size: .82rem; padding: 3px 0; }
+  .lang-row span:last-child { color: var(--text-dim); }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .toolbar { display: none; }
+    .page { box-shadow: none; border-radius: 0; padding: 22px 6px; max-width: 100%; }
+    @page { margin: 14mm; }
+  }
+  @media (max-width: 640px) {
+    .page { padding: 30px 22px; }
+    header { flex-direction: column; }
+    .contact { text-align: left; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="print-btn" onclick="window.print()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+    Print / Save as PDF
+  </button>
+</div>
+
+<div class="page">
+
+  <header>
+    <div>
+      <h1>Arhan Khan</h1>
+      <p class="role">Werkstudent Software Development / IT &amp; Digital Operations</p>
+    </div>
+    <div class="contact">
+      Stuttgart, 70569, Germany<br>
+      +49 176 6685 2627<br>
+      <a href="mailto:arhan.khan.careerdemands@gmail.com">arhan.khan.careerdemands@gmail.com</a><br>
+      <a href="https://linkedin.com/in/arhan-khan">linkedin.com/in/arhan-khan</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Profile</h2>
+    <p class="profile">Student of Informatik &amp; Management (B.Sc.) with hands-on experience in software development, data management, and digital marketing. Independently builds and ships production-ready SaaS software (Django, Python, JavaScript, REST APIs, Claude API integration) alongside operational experience in CRM data management, sales pipeline tracking, SEO, and structured reporting. Reliable, structured, and detail-oriented. Languages: English (C2), German (B1).</p>
+  </section>
+
+  <section>
+    <h2>Professional Experience</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Project &amp; Operations Manager</span>
+        <span class="entry-date">Apr 2026 – Present</span>
+      </div>
+      <div class="entry-org">ReRent GbR · Stuttgart, Germany</div>
+      <ul>
+        <li>Own end-to-end delivery of internal SaaS software — from requirements to technical build to production rollout — coordinating with development and DevOps.</li>
+        <li>Led the design and deployment of 5 custom SaaS platforms now in production use: a QA management platform, an AI content generator, a task/hours tracker, a custom CRM, and an AI-powered lead generation engine.</li>
+        <li>Manage the sales pipeline (leads, client interactions, deal status) across internal tracking systems, ensuring data accuracy at every stage.</li>
+        <li>Own SEO and inbound marketing strategy; oversee the social media team (Instagram, LinkedIn) and track results via custom Excel dashboards.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Founder &amp; Digital Operations Manager</span>
+        <span class="entry-date">Nov 2025 – Mar 2026</span>
+      </div>
+      <div class="entry-org">Studio Abroad · India (Remote)</div>
+      <ul>
+        <li>Founded and built Studio Abroad end-to-end — website, social channels, and Meta Ads — helping international students with university applications, entrance exam prep, and study-abroad guidance.</li>
+        <li>Generated €10,000+ in revenue within the first year of operation.</li>
+        <li>Coordinated global student recruitment operations; maintained CRM data integrity for 100+ active leads.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Werkstudent — Data Entry &amp; Quality Assurance</span>
+        <span class="entry-date">Aug 2025 – Sep 2025</span>
+      </div>
+      <div class="entry-org">Hugo Boss · Germany</div>
+      <ul>
+        <li>Recorded and maintained product and customer data in ERP/internal systems to rigorous accuracy standards.</li>
+        <li>Performed systematic data verification, cleansing, and deduplication to eliminate cross-dataset inconsistencies.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Web Designer &amp; Social Media Manager</span>
+        <span class="entry-date">May 2025 – Jul 2025</span>
+      </div>
+      <div class="entry-org">Elite Vision GmbH · Germany</div>
+      <ul>
+        <li>Managed project documentation, client data records, and digital marketing deliverables with consistent MS Office discipline.</li>
+        <li>Tracked social media engagement metrics and iterated the content calendar weekly based on performance data.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Featured Projects</h2>
+
+    <div class="entry">
+      <div class="proj-title">ReRent Bug Tracker &amp; QA Management Platform</div>
+      <div class="proj-stack">Django 6.0 · Python 3.14 · JavaScript (AJAX) · SQLite</div>
+      <div class="proj-desc">Full-stack QA platform replacing WhatsApp/Google Docs bug tracking for two live websites — auto-notified developer assignment, cross-check sign-off workflow, real-time team chat.</div>
+    </div>
+    <div class="entry">
+      <div class="proj-title">ReRent Blog Studio</div>
+      <div class="proj-stack">Django 6.0 · Python 3.14 · Claude API · SQLite</div>
+      <div class="proj-desc">AI-integrated content operations platform — Claude-powered drafting, SEO infrastructure, self-correcting scheduling. Cut a 10-hour weekly workflow to 60 minutes.</div>
+    </div>
+    <div class="entry">
+      <div class="proj-title">ReRent Time Tracker &amp; Task Management Platform</div>
+      <div class="proj-stack">Django 6.0 · Python 3.14 · JavaScript (AJAX) · SQLite</div>
+      <div class="proj-desc">Workforce operations platform — hours logging, admin-locked weekly targets with overtime detection, cross-checked payroll, task/project management, leave requests.</div>
+    </div>
+    <div class="entry">
+      <div class="proj-title">ReRent CRM — AI-Ready B2B Sales &amp; Outreach Platform</div>
+      <div class="proj-stack">Django 6.0 · Python 3.14 · Claude API · SQLite</div>
+      <div class="proj-desc">B2B CRM managing 6,300+ companies and 4,000+ contacts — smart import/dedup engine, cold-calling workspace, weighted pipeline forecasting, AI email composer.</div>
+    </div>
+    <div class="entry">
+      <div class="proj-title">AI-Powered Lead Generation &amp; Automation Engine</div>
+      <div class="proj-stack">Python · Web Scraping · Linux / VPS Cluster · OpenAI API</div>
+      <div class="proj-desc">Distributed scraping pipeline mapping every relevant business across all 16 German states — AI classification and legally-compliant (Impressum) contact extraction. Compressed ~10–12 months of manual research into 1.2 months.</div>
+    </div>
+    <div class="entry">
+      <div class="proj-title">Studio Abroad — Founder</div>
+      <div class="proj-stack">Web Design · Meta Ads · Social Media</div>
+      <div class="proj-desc">Founded and built this study-abroad guidance company from scratch. €10,000+ revenue in year one.</div>
+    </div>
+  </section>
+
+  <div class="two-col">
+    <section>
+      <h2>Education</h2>
+      <div class="edu-row">
+        <div><strong>B.Sc. Informatik &amp; Management</strong><span class="edu-loc">Stuttgart, Germany</span></div>
+        <span class="edu-date">2025–2028</span>
+      </div>
+      <div class="edu-row">
+        <div><strong>Diploma in Informatik</strong><span class="edu-loc">Bengaluru, India</span></div>
+        <span class="edu-date">2023–2025</span>
+      </div>
+      <div class="edu-row">
+        <div><strong>Adv. Diploma in Computer Applications</strong><span class="edu-loc">Mumbai, India</span></div>
+        <span class="edu-date">2021–2022</span>
+      </div>
+
+      <h2 style="margin-top:16px">Languages</h2>
+      <div class="lang-row"><span>English</span><span>C2 — Fluent</span></div>
+      <div class="lang-row"><span>German</span><span>B1</span></div>
+      <div class="lang-row"><span>Urdu / Hindi</span><span>Native</span></div>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skill-group">
+        <div class="skill-label">Programming</div>
+        <div class="pill-row">
+          <span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">HTML/CSS</span><span class="pill">C/C++ basics</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-label">Frameworks &amp; Tools</div>
+        <div class="pill-row">
+          <span class="pill">Django</span><span class="pill">REST APIs</span><span class="pill">SQLite</span><span class="pill">Git</span><span class="pill">Claude API</span><span class="pill">Linux / VPS</span><span class="pill">WordPress API</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-label">Data &amp; Operations</div>
+        <div class="pill-row">
+          <span class="pill">MS Excel (Advanced)</span><span class="pill">CRM Workflows</span><span class="pill">SharePoint</span><span class="pill">SEO / Analytics</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-label">Core Competencies</div>
+        <div class="pill-row">
+          <span class="pill">Data Quality</span><span class="pill">Independent Initiative</span><span class="pill">SaaS Product Building</span><span class="pill">Documentation</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
+</body>
+</html>
