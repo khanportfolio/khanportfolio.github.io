@@ -485,7 +485,30 @@
           </div>
         </article>
 
-        <!-- Project 5: Studio Abroad -->
+        <!-- Project 5: Germany Lead Generation Pipeline -->
+        <article class="project-card reveal" data-project="leadgen">
+          <div class="project-media">
+            <div class="media-frame">
+              <div class="media-img-wrap">
+                <img src="assets/images/lead-pipeline-1.png" alt="Germany-Wide Lead Generation Pipeline — state-by-state output folders screenshot" loading="lazy" data-hint="assets/images/lead-pipeline-1.png">
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">Web Scraping</span><span class="tag">Linux / VPS</span><span class="tag">OpenAI API</span><span class="tag">Excel Automation</span>
+            </div>
+            <h3>Germany-Wide Lead Generation &amp; Competitor Intelligence Pipeline</h3>
+            <p>A distributed data pipeline that mapped every relevant business across all 16 German federal states for ReRent — Python scrapers running in parallel across a self-managed cluster of Linux VPS servers, feeding an AI enrichment stage that verifies each lead and extracts contact details from Germany's legally required Impressum page. Compressed an estimated 10–12 months of manual research into 1.2 months, at zero data-acquisition cost. Designed, built, and deployed solo.</p>
+            <div class="project-actions">
+              <button type="button" class="read-more-btn" data-detail="leadgen">
+                Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 6: Studio Abroad -->
         <article class="project-card project-card-founder reveal" data-project="studio">
           <div class="project-media">
             <div class="media-frame">
@@ -636,7 +659,30 @@
           </div>
         </article>
 
-        <!-- Project 5: Studio Abroad (DE) -->
+        <!-- Project 5: Germany Lead Generation Pipeline (DE) -->
+        <article class="project-card reveal" data-project="leadgen-de">
+          <div class="project-media">
+            <div class="media-frame">
+              <div class="media-img-wrap">
+                <img src="assets/images/lead-pipeline-1.png" alt="Deutschlandweite Lead-Pipeline — Screenshot der Ausgabeordner nach Bundesland" loading="lazy" data-hint="assets/images/lead-pipeline-1.png">
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">Web Scraping</span><span class="tag">Linux / VPS</span><span class="tag">OpenAI API</span><span class="tag">Excel-Automatisierung</span>
+            </div>
+            <h3>Deutschlandweite Lead-Generierung &amp; Wettbewerbsanalyse-Pipeline</h3>
+            <p>Eine verteilte Datenpipeline, die für ReRent jedes relevante Unternehmen in allen 16 deutschen Bundesländern erfasst hat — Python-Scraper, die parallel auf einem selbst verwalteten Cluster aus Linux-VPS-Servern laufen, gespeist in eine KI-Anreicherungsstufe, die jeden Lead verifiziert und Kontaktdaten aus dem gesetzlich vorgeschriebenen Impressum extrahiert. Ein geschätzter 10- bis 12-monatiger manueller Rechercheaufwand wurde auf 1,2 Monate komprimiert, bei null Kosten für den Datenerwerb. Allein konzipiert, gebaut und eingesetzt.</p>
+            <div class="project-actions">
+              <button type="button" class="read-more-btn" data-detail="leadgen-de">
+                Mehr lesen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 6: Studio Abroad (DE) -->
         <article class="project-card project-card-founder reveal" data-project="studio-de">
           <div class="project-media">
             <div class="media-frame">
@@ -1132,6 +1178,82 @@
         <p>Was früher ein Satz getrennter Tabellen war, ist jetzt ein System, das seine eingehenden Daten selbst erkennt und dedupliziert, einen 6.300-Firmen-Datensatz mit einem Klick in saubere, kampagnenfertige Listen segmentiert und dem Vertriebsteam eine echte Pipeline, eine echte Prognose und eine echte Anrufwarteschlange gibt — mit einem KI-Composer, der bereits gebaut und bereit ist, mit einem echten Modell jede generierte E-Mail noch smarter zu machen.</p>
       </div>
       <a href="http://crm.rerenthome.de/" target="_blank" rel="noopener" class="btn btn-primary detail-live-link">Live ansehen ↗</a>
+    </template>
+
+    <template id="detail-leadgen">
+      <div class="detail-media">
+        <div class="media-img-wrap"><img src="assets/images/lead-pipeline-1.png" alt="Germany-Wide Lead Generation Pipeline screenshot"></div>
+      </div>
+      <div class="detail-head">
+        <h3>Germany-Wide Lead Generation &amp; Competitor Intelligence Pipeline</h3>
+        <p class="detail-tagline">Python · Web Scraping · Linux / VPS Cluster · OpenAI API · Excel Automation</p>
+        <p class="detail-role">Role: Sole designer and developer &nbsp;·&nbsp; Status: Completed — dataset delivered</p>
+        <div class="detail-stats">
+          <span class="stat-chip">16/16 states covered</span>
+          <span class="stat-chip">1.2 months vs. 10–12 months manual</span>
+          <span class="stat-chip">Zero data-acquisition cost</span>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h4>The problem it replaced</h4>
+        <p>Business lead and competitor data for the German market is expensive to buy commercially, and building it manually is worse: searching Google Maps city by city for even a handful of cities took roughly 100 hours. Covering all 16 federal states — hundreds of cities — by hand would have taken an estimated 10 to 12 months of manual research, with no guarantee the data stayed current by the time it was finished.</p>
+
+        <h4>What I built</h4>
+        <p>A multi-stage pipeline that collects, verifies, and enriches business data for the entire country, running unattended for weeks at a time.</p>
+
+        <h5>Stage 1 — Distributed collection</h5>
+        <p>A Python-based Google Maps scraping engine, deployed across a self-managed cluster of 3–4 Linux VPS servers running continuously in parallel to cover the whole country at once. Output was organized into a folder per German state — Baden-Württemberg, Bayern, Berlin, Brandenburg, Bremen, Hamburg, Lower Saxony, Mecklenburg-Vorpommern, Nordrhein-Westfalen, Rheinland-Pfalz, Saarland, Saxony, Saxony-Anhalt, Schleswig-Holstein, Thuringia, and Hessen — with a status-tracking Excel file to monitor progress across the whole run. Each listing captured business name, address, phone, website, social media, owner data, and location/category.</p>
+
+        <h5>Stage 2 — AI enrichment &amp; compliance-based verification</h5>
+        <p>A second pipeline reads the collected website list from Excel, cleans and fixes each URL, visits the homepage, and asks an LLM to classify relevance — in this case, whether the business sells a competing product line (Dachbox/Roofbox/Heckbox) — turning raw listings into qualified leads. Instead of scraping noisy generic contact pages, it specifically targets Germany's legally mandated Impressum (legal notice) page — required by the Telemediengesetz on every commercial site — as a structured, high-trust source for the owner/manager name, email, and phone number. The AI first tries to pick the correct Impressum link directly off the homepage; if that fails, it falls back to checking common paths like /impressum, /imprint, and /legal. Extraction itself is two-tier: the LLM parses the page first, with a regex fallback layer for edge cases — specifically tuned to avoid miscapturing a fax number as the phone number.</p>
+
+        <h5>Fault tolerance</h5>
+        <p>Built for unattended, multi-day runs: every website's result is saved to the Excel output immediately after processing, not batched at the end, so a crash or restart never loses progress on a job that takes weeks to complete.</p>
+
+        <h5>Stage 3 — Post-processing</h5>
+        <p>Deduplication, filtering of non-matching results, and categorization before final export — delivered as clean, structured Excel files ready for direct use in outreach and competitor mapping.</p>
+
+        <h4>The result</h4>
+        <p>Full coverage of all 16 German states in 1.2 months, versus an estimated 10 to 12 months of manual work — and it removed the need to purchase commercial German lead/business databases entirely, built end to end with free and open tooling.</p>
+      </div>
+    </template>
+
+    <template id="detail-leadgen-de">
+      <div class="detail-media">
+        <div class="media-img-wrap"><img src="assets/images/lead-pipeline-1.png" alt="Deutschlandweite Lead-Pipeline Screenshot"></div>
+      </div>
+      <div class="detail-head">
+        <h3>Deutschlandweite Lead-Generierung &amp; Wettbewerbsanalyse-Pipeline</h3>
+        <p class="detail-tagline">Python · Web Scraping · Linux-/VPS-Cluster · OpenAI API · Excel-Automatisierung</p>
+        <p class="detail-role">Rolle: Alleiniger Designer und Entwickler &nbsp;·&nbsp; Status: Abgeschlossen — Datensatz geliefert</p>
+        <div class="detail-stats">
+          <span class="stat-chip">16 von 16 Bundesländern abgedeckt</span>
+          <span class="stat-chip">1,2 Monate statt 10–12 Monate manuell</span>
+          <span class="stat-chip">Null Kosten für den Datenerwerb</span>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h4>Das Problem, das es gelöst hat</h4>
+        <p>Lead- und Wettbewerbsdaten für den deutschen Markt sind kommerziell teuer einzukaufen, und die manuelle Erstellung ist noch schlechter: Google Maps Stadt für Stadt zu durchsuchen, dauerte schon für eine Handvoll Städte rund 100 Stunden. Alle 16 Bundesländer — Hunderte Städte — von Hand abzudecken, hätte schätzungsweise 10 bis 12 Monate manueller Recherche gekostet, ohne Garantie, dass die Daten bei Fertigstellung noch aktuell wären.</p>
+
+        <h4>Was ich gebaut habe</h4>
+        <p>Eine mehrstufige Pipeline, die Unternehmensdaten für das gesamte Land sammelt, verifiziert und anreichert — läuft wochenlang unbeaufsichtigt.</p>
+
+        <h5>Stufe 1 — Verteilte Sammlung</h5>
+        <p>Eine Python-basierte Google-Maps-Scraping-Engine, verteilt auf einem selbst verwalteten Cluster aus 3–4 Linux-VPS-Servern, die kontinuierlich parallel laufen, um das ganze Land gleichzeitig abzudecken. Die Ausgabe wurde in einem Ordner pro Bundesland organisiert — Baden-Württemberg, Bayern, Berlin, Brandenburg, Bremen, Hamburg, Niedersachsen, Mecklenburg-Vorpommern, Nordrhein-Westfalen, Rheinland-Pfalz, Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein, Thüringen und Hessen — mit einer Status-Excel-Datei zur Fortschrittsverfolgung über den gesamten Lauf. Jeder Eintrag erfasste Firmenname, Adresse, Telefon, Website, Social Media, Inhaberdaten und Standort/Kategorie.</p>
+
+        <h5>Stufe 2 — KI-Anreicherung &amp; regelkonforme Verifizierung</h5>
+        <p>Eine zweite Pipeline liest die gesammelte Website-Liste aus Excel, bereinigt und korrigiert jede URL, ruft die Startseite auf und lässt ein LLM die Relevanz einordnen — in diesem Fall, ob das Unternehmen eine konkurrierende Produktlinie verkauft (Dachbox/Roofbox/Heckbox) — und macht so aus rohen Einträgen qualifizierte Leads. Statt verrauschter, allgemeiner Kontaktseiten zu scrapen, zielt die Pipeline gezielt auf das in Deutschland gesetzlich vorgeschriebene Impressum — Pflicht nach dem Telemediengesetz auf jeder kommerziellen Website — als strukturierte, vertrauenswürdige Quelle für den Namen des Inhabers/der Geschäftsführung, E-Mail und Telefonnummer. Die KI versucht zunächst, den richtigen Impressum-Link direkt von der Startseite auszuwählen; schlägt das fehl, greift sie auf gängige Pfade wie /impressum, /imprint und /legal zurück. Die Extraktion selbst läuft zweistufig: Das LLM liest die Seite zuerst, mit einer Regex-Fallback-Ebene für Grenzfälle — speziell darauf abgestimmt, eine Faxnummer nicht fälschlich als Telefonnummer zu erfassen.</p>
+
+        <h5>Ausfallsicherheit</h5>
+        <p>Gebaut für unbeaufsichtigte, mehrtägige Läufe: Das Ergebnis jeder Website wird sofort nach der Verarbeitung in die Excel-Ausgabe gespeichert, nicht erst am Ende gesammelt — so geht bei einem Absturz oder Neustart nie der Fortschritt eines Jobs verloren, der Wochen dauert.</p>
+
+        <h5>Stufe 3 — Nachbearbeitung</h5>
+        <p>Deduplizierung, Herausfiltern nicht passender Ergebnisse und Kategorisierung vor dem finalen Export — geliefert als saubere, strukturierte Excel-Dateien, direkt einsatzbereit für Outreach und Wettbewerbsanalyse.</p>
+
+        <h4>Das Ergebnis</h4>
+        <p>Vollständige Abdeckung aller 16 deutschen Bundesländer in 1,2 Monaten statt geschätzter 10 bis 12 Monate manueller Arbeit — und der Kauf kommerzieller deutscher Lead-/Firmendatenbanken wurde komplett überflüssig, gebaut durchgängig mit freien und offenen Tools.</p>
+      </div>
     </template>
   </section>
 
