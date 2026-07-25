@@ -1303,10 +1303,6 @@ html[lang="de"] .media-img-wrap::after {
 .edu-card h3 { font-size: 1.02rem; margin-bottom: 6px; }
 .edu-card p { color: var(--text-dim); font-size: .88rem; }
 
-@media (max-width: 800px) {
-  .edu-grid { grid-template-columns: 1fr; }
-}
-
 .languages {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1330,6 +1326,123 @@ html[lang="de"] .media-img-wrap::after {
   border-radius: 999px;
   background: var(--gradient);
   transition: width 1.1s cubic-bezier(.2,.8,.2,1);
+}
+
+/* ---------- Education: mobile-only "Academic Foundation" redesign ---------- */
+.edu-mobile-head { display: none; }
+.edu-icon { display: none; }
+.edu-pin { display: none; }
+.edu-desc { display: none; }
+.languages-head { display: contents; }
+.lang-globe { display: none; }
+.lang-viewall { display: none; }
+
+@media (max-width: 900px) {
+  #education .section-eyebrow,
+  #education .section-title { display: none; }
+
+  .edu-mobile-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+  .edu-mobile-text { min-width: 0; }
+  .edu-mobile-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: .76rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--accent-1);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .edu-cap-icon { font-size: 1rem; }
+  .edu-mobile-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .edu-mobile-sub {
+    font-size: .84rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .edu-mobile-illustration {
+    flex: none;
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(109,94,252,.14), rgba(255,101,132,.14));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+  }
+
+  .edu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 26px;
+    border-left: 2px solid var(--border);
+    margin-bottom: 28px;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    left: -34px; top: 24px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gradient);
+    box-shadow: 0 0 0 4px var(--bg-alt);
+  }
+  .edu-grid .edu-card:last-child { border-color: var(--accent-1); }
+
+  .edu-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+  .edu-icon-1, .edu-icon-3 { background: rgba(109,94,252,.14); }
+  .edu-icon-2 { background: rgba(255,101,132,.14); }
+
+  .edu-loc { display: flex; align-items: center; }
+  .edu-pin { display: inline-block; margin-right: 5px; }
+  .edu-desc {
+    display: block;
+    font-size: .8rem;
+    color: var(--text-faint);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  .languages-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .languages-head h3 { margin-bottom: 0; display: flex; align-items: center; }
+  .lang-globe { display: inline-block; margin-right: 8px; }
+  .lang-viewall {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
 }
 
 /* ---------- Contact ---------- */
