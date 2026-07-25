@@ -926,107 +926,20 @@ html[lang="de"] .media-img-wrap::after {
   .carousel-arrow { opacity: 1; }
 }
 
-/* ---------- Mini flow visual (project card thumbnail) ---------- */
-.flow-mini {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
-  gap: 10px;
-  padding: 20px;
-  background: var(--surface-2);
-}
-.flow-mini-step {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: .8rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.flow-mini-arrow { color: var(--text-faint); font-weight: 700; }
-
-/* ---------- Full pipeline flow diagram (detail modal) ---------- */
-.flow-diagram {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
+/* ---------- Pipeline architecture diagram (detail modal) ---------- */
+.detail-diagram {
   margin: 18px 0 26px;
-  padding: 18px;
   border-radius: var(--radius-sm);
-  background: var(--surface-2);
+  overflow: hidden;
   border: 1px solid var(--border);
+  background: var(--surface-2);
 }
-.flow-step {
-  flex: 1 1 190px;
-  max-width: 230px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1.5px solid transparent;
-}
-.flow-icon { font-size: 1.15rem; line-height: 1; }
-.flow-label { font-weight: 700; font-size: .8rem; }
-.flow-desc { font-size: .71rem; line-height: 1.35; opacity: .85; }
-.flow-arrow {
-  flex: 0 0 auto;
-  font-size: 1.1rem;
-  color: var(--text-faint);
-  font-weight: 700;
-}
+.detail-diagram img { width: 100%; height: auto; display: block; }
+.diagram-portrait { display: none; }
 
-.flow-green   { background: #e3f8ea; border-color: rgba(52,168,83,.2);  color: #1a6b34; }
-.flow-blue    { background: #e6f0ff; border-color: rgba(66,133,244,.2); color: #1a56b0; }
-.flow-yellow  { background: #fff6df; border-color: rgba(245,178,60,.25); color: #92650c; }
-.flow-purple  { background: #f1e9ff; border-color: rgba(139,92,246,.2); color: #5b34b0; }
-.flow-teal    { background: #e1f7f5; border-color: rgba(20,184,166,.2); color: #0d7d70; }
-.flow-red     { background: #fde8e8; border-color: rgba(239,68,68,.2);  color: #b0221f; }
-
-.flow-decision {
-  flex: 0 0 auto;
-  padding: 10px 20px;
-  border-radius: 10px;
-  background: #e3f8ea;
-  color: #1a6b34;
-  font-weight: 800;
-  font-size: .85rem;
-  border: 1.5px dashed rgba(52,168,83,.35);
-}
-
-.flow-branches {
-  flex: 1 1 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
-  padding: 14px 0 4px 18px;
-  margin-left: 8px;
-  border-left: 2px dashed var(--border);
-}
-.flow-branch {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.flow-branch-label {
-  font-family: var(--font-mono);
-  font-size: .68rem;
-  font-weight: 800;
-  padding: 3px 10px;
-  border-radius: 999px;
-  text-transform: uppercase;
-}
-.flow-branch-no .flow-branch-label { background: #fde8e8; color: #b0221f; }
-.flow-branch-yes .flow-branch-label { background: #e3f8ea; color: #1a6b34; }
-
-@media (max-width: 520px) {
-  .flow-diagram { padding: 14px; gap: 8px; }
-  .flow-step { flex: 1 1 100%; max-width: none; }
-  .flow-arrow { transform: rotate(90deg); margin: 0 auto; }
-  .flow-branches { padding-left: 10px; margin-left: 4px; gap: 12px; }
-  .flow-mini { padding: 14px; gap: 8px; }
-  .flow-mini-step { font-size: .72rem; padding: 6px 10px; }
+@media (max-width: 700px) {
+  .diagram-landscape { display: none; }
+  .diagram-portrait { display: block; }
 }
 
 .project-body h3 { font-size: 1.18rem; font-weight: 700; }

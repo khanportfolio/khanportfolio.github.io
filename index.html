@@ -1231,87 +1231,9 @@
         <h4>What I built</h4>
         <p>A multi-stage pipeline that collects, verifies, and enriches business data for the entire country, running unattended for weeks at a time.</p>
 
-        <div class="flow-diagram" role="img" aria-label="Pipeline flowchart: read the Excel list of websites, then for each one clean the URL, visit the homepage, ask an AI whether the site sells a competing product, and locate the Impressum page. If not found, log it as a Roofbox Seller only and move on. If found, visit the Impressum page, extract the owner, email, and phone with AI plus a regex fallback, and save the result to Excel immediately. Repeat for every website until the final Excel file is complete.">
-          <div class="flow-step flow-green">
-            <span class="flow-icon">📊</span>
-            <span class="flow-label">START</span>
-            <span class="flow-desc">Read Excel file with list of websites (column: "Website Address")</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-blue">
-            <span class="flow-icon">🔁</span>
-            <span class="flow-label">For each website</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-yellow">
-            <span class="flow-icon">🔗</span>
-            <span class="flow-label">1. Clean &amp; fix the URL</span>
-            <span class="flow-desc">Add https:// if missing, remove bad values</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-purple">
-            <span class="flow-icon">🌐</span>
-            <span class="flow-label">2. Visit the homepage</span>
-            <span class="flow-desc">Download the page content</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-teal">
-            <span class="flow-icon">🤖</span>
-            <span class="flow-label">3. Ask AI</span>
-            <span class="flow-desc">"Does this site sell Dachbox / Roofbox / Heckbox?" → yes / no / nil</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-blue">
-            <span class="flow-icon">🔍</span>
-            <span class="flow-label">4. Find the Impressum page</span>
-            <span class="flow-desc">AI picks the best link first; falls back to /impressum, /imprint, /legal</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-decision">Found?</div>
-
-          <div class="flow-branches">
-            <div class="flow-branch flow-branch-no">
-              <span class="flow-branch-label">No</span>
-              <div class="flow-step flow-red">
-                <span class="flow-icon">📄</span>
-                <span class="flow-label">Save only "Roofbox Seller"</span>
-                <span class="flow-desc">Move to next website</span>
-              </div>
-            </div>
-            <div class="flow-branch flow-branch-yes">
-              <span class="flow-branch-label">Yes</span>
-              <div class="flow-step flow-purple">
-                <span class="flow-icon">🌐</span>
-                <span class="flow-label">5. Visit the Impressum page</span>
-                <span class="flow-desc">Download the page</span>
-              </div>
-              <span class="flow-arrow">→</span>
-              <div class="flow-step flow-yellow">
-                <span class="flow-icon">👤</span>
-                <span class="flow-label">6. Extract contact info</span>
-                <span class="flow-desc">Owner/Manager, Email, Phone — AI first, regex fallback (avoids fax numbers)</span>
-              </div>
-              <span class="flow-arrow">→</span>
-              <div class="flow-step flow-green">
-                <span class="flow-icon">📊</span>
-                <span class="flow-label">7. Save results to Excel</span>
-                <span class="flow-desc">Saved after every website — progress is never lost</span>
-              </div>
-            </div>
-          </div>
-
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-blue">
-            <span class="flow-icon">🔁</span>
-            <span class="flow-label">Next website...</span>
-            <span class="flow-desc">Repeat until the list is finished</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-green">
-            <span class="flow-icon">✅</span>
-            <span class="flow-label">FINISH</span>
-            <span class="flow-desc">Final Excel with Roofbox Seller, Impressum URL, Owner/Manager, Email, Contact</span>
-          </div>
+        <div class="detail-diagram">
+          <img class="diagram-landscape" src="assets/images/lead-pipeline-diagram.png" alt="Impressum Data Extraction Workflow — full pipeline architecture diagram" loading="lazy">
+          <img class="diagram-portrait" src="assets/images/lead-pipeline-diagram-portrait.png" alt="Impressum Data Extraction Workflow — full pipeline architecture diagram (portrait)" loading="lazy">
         </div>
 
         <h5>Stage 1 — Distributed collection</h5>
@@ -1352,87 +1274,9 @@
         <h4>Was ich gebaut habe</h4>
         <p>Eine mehrstufige Pipeline, die Unternehmensdaten für das gesamte Land sammelt, verifiziert und anreichert — läuft wochenlang unbeaufsichtigt.</p>
 
-        <div class="flow-diagram" role="img" aria-label="Pipeline-Flowchart: Excel-Liste der Websites einlesen, dann für jede Website die URL bereinigen, die Startseite besuchen, eine KI fragen, ob die Website ein konkurrierendes Produkt verkauft, und die Impressum-Seite suchen. Falls nicht gefunden, nur als Roofbox-Verkäufer speichern und weitermachen. Falls gefunden, die Impressum-Seite besuchen, Inhaber, E-Mail und Telefon per KI mit Regex-Fallback extrahieren und das Ergebnis sofort in Excel speichern. Für jede Website wiederholen, bis die finale Excel-Datei vollständig ist.">
-          <div class="flow-step flow-green">
-            <span class="flow-icon">📊</span>
-            <span class="flow-label">START</span>
-            <span class="flow-desc">Excel-Datei mit Website-Liste einlesen (Spalte: „Website Address")</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-blue">
-            <span class="flow-icon">🔁</span>
-            <span class="flow-label">Für jede Website</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-yellow">
-            <span class="flow-icon">🔗</span>
-            <span class="flow-label">1. URL bereinigen &amp; korrigieren</span>
-            <span class="flow-desc">https:// ergänzen, falls fehlend; fehlerhafte Werte entfernen</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-purple">
-            <span class="flow-icon">🌐</span>
-            <span class="flow-label">2. Startseite besuchen</span>
-            <span class="flow-desc">Seiteninhalt herunterladen</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-teal">
-            <span class="flow-icon">🤖</span>
-            <span class="flow-label">3. KI fragen</span>
-            <span class="flow-desc">„Verkauft diese Website Dachbox / Roofbox / Heckbox?" → ja / nein / nil</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-blue">
-            <span class="flow-icon">🔍</span>
-            <span class="flow-label">4. Impressum-Seite finden</span>
-            <span class="flow-desc">KI wählt zuerst den besten Link; Fallback auf /impressum, /imprint, /legal</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-decision">Gefunden?</div>
-
-          <div class="flow-branches">
-            <div class="flow-branch flow-branch-no">
-              <span class="flow-branch-label">Nein</span>
-              <div class="flow-step flow-red">
-                <span class="flow-icon">📄</span>
-                <span class="flow-label">Nur als „Roofbox Seller" speichern</span>
-                <span class="flow-desc">Weiter zur nächsten Website</span>
-              </div>
-            </div>
-            <div class="flow-branch flow-branch-yes">
-              <span class="flow-branch-label">Ja</span>
-              <div class="flow-step flow-purple">
-                <span class="flow-icon">🌐</span>
-                <span class="flow-label">5. Impressum-Seite besuchen</span>
-                <span class="flow-desc">Seite herunterladen</span>
-              </div>
-              <span class="flow-arrow">→</span>
-              <div class="flow-step flow-yellow">
-                <span class="flow-icon">👤</span>
-                <span class="flow-label">6. Kontaktdaten extrahieren</span>
-                <span class="flow-desc">Inhaber/Geschäftsführung, E-Mail, Telefon — KI zuerst, Regex-Fallback (vermeidet Faxnummern)</span>
-              </div>
-              <span class="flow-arrow">→</span>
-              <div class="flow-step flow-green">
-                <span class="flow-icon">📊</span>
-                <span class="flow-label">7. Ergebnisse in Excel speichern</span>
-                <span class="flow-desc">Wird nach jeder Website gespeichert — Fortschritt geht nie verloren</span>
-              </div>
-            </div>
-          </div>
-
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-blue">
-            <span class="flow-icon">🔁</span>
-            <span class="flow-label">Nächste Website ...</span>
-            <span class="flow-desc">Wiederholen, bis die Liste abgeschlossen ist</span>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step flow-green">
-            <span class="flow-icon">✅</span>
-            <span class="flow-label">FERTIG</span>
-            <span class="flow-desc">Finale Excel-Datei mit Roofbox Seller, Impressum-URL, Inhaber/Geschäftsführung, E-Mail, Kontakt</span>
-          </div>
+        <div class="detail-diagram">
+          <img class="diagram-landscape" src="assets/images/lead-pipeline-diagram.png" alt="Impressum-Datenextraktions-Workflow — vollständiges Architekturdiagramm" loading="lazy">
+          <img class="diagram-portrait" src="assets/images/lead-pipeline-diagram-portrait.png" alt="Impressum-Datenextraktions-Workflow — vollständiges Architekturdiagramm (Hochformat)" loading="lazy">
         </div>
 
         <h5>Stufe 1 — Verteilte Sammlung</h5>
