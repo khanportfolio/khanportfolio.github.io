@@ -485,7 +485,6 @@ ul { list-style: none; }
 }
 
 /* ---------- Mobile/tablet-only hero enhancements (≤900px) ---------- */
-.hero-cv-btn { display: none; }
 .hero-tech-strip { display: none; }
 
 @media (max-width: 900px) {
