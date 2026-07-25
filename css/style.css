@@ -725,6 +725,11 @@ ul { list-style: none; }
 }
 .project-card:hover .media-img-wrap img { transform: scale(1.05); }
 
+.media-img-wrap-contain,
+.media-img-wrap-contain img { background: var(--surface-2); }
+.media-img-wrap-contain img { object-fit: contain; object-position: center; }
+.project-card:hover .media-img-wrap-contain img { transform: none; }
+
 .media-img-wrap::before {
   content: '';
   position: absolute; inset: 0;
