@@ -1091,6 +1091,9 @@ html[lang="de"] .media-img-wrap::after {
 .tool-google { background: linear-gradient(135deg, #4285f4, #34a853 33%, #fbbc05 66%, #ea4335); }
 .tool-excel { background: linear-gradient(135deg, #217346, #2e9e5f); }
 .tool-pythonanywhere { background: linear-gradient(135deg, #17181c, #3d4a5c); }
+.tool-linux { background: linear-gradient(135deg, #0f0f10, #2b2b2e); }
+.tool-openai { background: linear-gradient(135deg, #10a37f, #0d8a6a); }
+.tool-scraping { background: linear-gradient(135deg, #06b6d4, #0891b2); }
 
 .skills-grid {
   display: grid;
