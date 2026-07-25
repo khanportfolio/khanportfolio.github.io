@@ -284,8 +284,10 @@ function startTyping(elId, words) {
   const closeBtn = document.getElementById('lightbox-close');
 
   document.querySelectorAll('.media-frame').forEach(frame => {
-    frame.addEventListener('click', () => {
-      const img = frame.querySelector('img');
+    frame.addEventListener('click', (e) => {
+      if (e.target.closest('.carousel-arrow, .carousel-dot')) return;
+      const activeSlide = frame.querySelector('.carousel-slide.is-active');
+      const img = activeSlide ? activeSlide.querySelector('img') : frame.querySelector('img');
       if (!img) return;
       lbImg.src = img.src;
       lbImg.alt = img.alt;
@@ -304,6 +306,44 @@ function startTyping(elId, words) {
   closeBtn.addEventListener('click', close);
   lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+})();
+
+/* ==========================================================================
+   Media carousels (multi-image project cards — click arrows/dots or swipe)
+   ========================================================================== */
+(function mediaCarousels() {
+  document.querySelectorAll('.media-carousel').forEach(carousel => {
+    const track = carousel.querySelector('.carousel-track');
+    const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+    const dots = Array.from(carousel.querySelectorAll('.carousel-dot'));
+    const prevBtn = carousel.querySelector('.carousel-prev');
+    const nextBtn = carousel.querySelector('.carousel-next');
+    if (!track || slides.length < 2) return;
+
+    let index = Math.max(0, slides.findIndex(s => s.classList.contains('is-active')));
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      slides.forEach((s, si) => s.classList.toggle('is-active', si === index));
+      dots.forEach((d, di) => d.classList.toggle('active', di === index));
+    }
+
+    prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); goTo(index - 1); });
+    nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); goTo(index + 1); });
+    dots.forEach((dot, di) => dot.addEventListener('click', (e) => { e.stopPropagation(); goTo(di); }));
+
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    carousel.addEventListener('touchend', (e) => {
+      const delta = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 40) goTo(delta > 0 ? index - 1 : index + 1);
+    }, { passive: true });
+
+    goTo(index);
+  });
 })();
 
 /* ==========================================================================
