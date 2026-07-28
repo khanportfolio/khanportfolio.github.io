@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
 
@@ -115,14 +115,28 @@
         </div>
 
         <div class="hero-actions">
-          <a href="cv.html" target="_blank" class="btn btn-primary hero-cv-btn" data-lang="en" hidden>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
-            Download CV
-          </a>
-          <a href="cv.html" target="_blank" class="btn btn-primary hero-cv-btn" data-lang="de">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
-            Lebenslauf laden
-          </a>
+          <div class="cv-dropdown" data-lang="en" hidden>
+            <button type="button" class="btn btn-primary hero-cv-btn cv-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+              Download CV
+              <svg class="cv-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="cv-dropdown-menu" role="menu">
+              <a href="assets/cv/Arhan_Khan_CV_EN.pdf" download role="menuitem" class="cv-dropdown-item">🇬🇧 English</a>
+              <a href="assets/cv/Arhan_Khan_CV_DE.pdf" download role="menuitem" class="cv-dropdown-item">🇩🇪 Deutsch</a>
+            </div>
+          </div>
+          <div class="cv-dropdown" data-lang="de">
+            <button type="button" class="btn btn-primary hero-cv-btn cv-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+              Lebenslauf laden
+              <svg class="cv-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="cv-dropdown-menu" role="menu">
+              <a href="assets/cv/Arhan_Khan_CV_EN.pdf" download role="menuitem" class="cv-dropdown-item">🇬🇧 English</a>
+              <a href="assets/cv/Arhan_Khan_CV_DE.pdf" download role="menuitem" class="cv-dropdown-item">🇩🇪 Deutsch</a>
+            </div>
+          </div>
           <a href="#projects" class="btn btn-primary" data-lang="en" hidden>View Projects</a>
           <a href="#projects" class="btn btn-primary" data-lang="de">Projekte ansehen</a>
           <a href="#contact" class="btn btn-ghost" data-lang="en" hidden>Get in Touch</a>

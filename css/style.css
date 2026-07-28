@@ -516,13 +516,60 @@ ul { list-style: none; }
   }
 
   .hero-actions { flex-wrap: wrap; }
-  .hero-cv-btn {
-    display: inline-flex;
+  .cv-dropdown {
     order: -1;
     flex-basis: 100%;
+  }
+  .hero-cv-btn {
+    display: inline-flex;
+    width: 100%;
     justify-content: center;
   }
 }
+
+/* ---------- CV dropdown (Download CV: EN / DE) ---------- */
+.cv-dropdown { position: relative; }
+.cv-dropdown-toggle { cursor: pointer; }
+.cv-caret { transition: transform .2s ease; }
+.cv-dropdown.open .cv-caret { transform: rotate(180deg); }
+.cv-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 190px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 50;
+}
+.cv-dropdown.open .cv-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.cv-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: background .15s ease;
+}
+.cv-dropdown-item:hover, .cv-dropdown-item:focus-visible { background: var(--surface-2); }
 
 /* ---------- Sections ---------- */
 .section { padding: 110px 0; }

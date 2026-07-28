@@ -95,6 +95,41 @@
 })();
 
 /* ==========================================================================
+   CV dropdown (Download CV: English / German)
+   ========================================================================== */
+(function cvDropdown() {
+  const dropdowns = Array.from(document.querySelectorAll('.cv-dropdown'));
+  if (!dropdowns.length) return;
+
+  function closeAll() {
+    dropdowns.forEach(d => {
+      d.classList.remove('open');
+      d.querySelector('.cv-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.cv-dropdown-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = !dropdown.classList.contains('open');
+      closeAll();
+      if (willOpen) {
+        dropdown.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+    dropdown.querySelectorAll('.cv-dropdown-item').forEach(item => {
+      item.addEventListener('click', closeAll);
+    });
+  });
+
+  document.addEventListener('click', closeAll);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+})();
+
+/* ==========================================================================
    Active nav link on scroll
    ========================================================================== */
 (function activeSection() {
