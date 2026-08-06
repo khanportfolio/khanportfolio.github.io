@@ -1,5 +1,11 @@
 'use strict';
 
+function getEffectiveTheme() {
+  const attr = document.documentElement.getAttribute('data-theme');
+  if (attr === 'light' || attr === 'dark') return attr;
+  return matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+}
+
 /* ==========================================================================
    Theme toggle (persisted in localStorage)
    ========================================================================== */
@@ -11,13 +17,92 @@
   if (stored) root.setAttribute('data-theme', stored);
 
   btn.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme') === 'light'
-      ? 'light'
-      : (root.getAttribute('data-theme') === 'dark' ? 'dark' : (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
-    const next = current === 'dark' ? 'light' : 'dark';
+    const next = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
     localStorage.setItem('ak-theme', next);
   });
+})();
+
+/* ==========================================================================
+   Hero avatar video — theme-matched cross-fade, ambient float + parallax,
+   reduced-motion / save-data / error fallback handling
+   ========================================================================== */
+(function heroAvatarVideo() {
+  const dayVideo = document.getElementById('hero-video-day');
+  const nightVideo = document.getElementById('hero-video-night');
+  const parallaxEl = document.getElementById('hero-video-parallax');
+  const avatarFrame = document.getElementById('avatar-frame');
+  if (!dayVideo || !nightVideo || !parallaxEl || !avatarFrame) return;
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const conn = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
+  const isSaveData = !!(conn && (conn.saveData || ['slow-2g', '2g'].includes(conn.effectiveType)));
+
+  if (isSaveData) {
+    // stop whatever native autoplay may have already kicked off, and stop further buffering
+    dayVideo.pause(); nightVideo.pause();
+    dayVideo.preload = 'none'; nightVideo.preload = 'none';
+    dayVideo.removeAttribute('autoplay'); nightVideo.removeAttribute('autoplay');
+  }
+
+  let failed = { day: false, night: false };
+  function showFallback() {
+    parallaxEl.style.display = 'none';
+    avatarFrame.hidden = false;
+  }
+  dayVideo.addEventListener('error', () => { failed.day = true; if (failed.night) showFallback(); });
+  nightVideo.addEventListener('error', () => { failed.night = true; if (failed.day) showFallback(); });
+
+  function tryPlay(video) {
+    if (isSaveData) return; // stay on poster frame to respect data-saver mode
+    const p = video.play();
+    if (p && p.catch) p.catch(() => {});
+  }
+
+  function applyTheme() {
+    if (failed.day && failed.night) return;
+    const isDark = getEffectiveTheme() === 'dark';
+    const active = isDark ? nightVideo : dayVideo;
+    const inactive = isDark ? dayVideo : nightVideo;
+    active.classList.add('is-active');
+    inactive.classList.remove('is-active');
+    tryPlay(active);
+    inactive.pause();
+  }
+
+  applyTheme();
+  if (reducedMotion) {
+    dayVideo.pause();
+    nightVideo.pause();
+  }
+
+  // react to theme changes (toggle click updates the attribute; also cover system-preference changes)
+  new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  matchMedia('(prefers-color-scheme: light)').addEventListener?.('change', () => {
+    if (!localStorage.getItem('ak-theme')) applyTheme();
+  });
+
+  // subtle parallax on desktop pointer devices only
+  if (!reducedMotion && matchMedia('(pointer: fine)').matches) {
+    let raf = null;
+    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+    const MAX_SHIFT = 10;
+
+    function loop() {
+      curX += (targetX - curX) * 0.08;
+      curY += (targetY - curY) * 0.08;
+      parallaxEl.style.transform = `translate(${curX.toFixed(2)}px, ${curY.toFixed(2)}px)`;
+      raf = Math.abs(targetX - curX) > 0.05 || Math.abs(targetY - curY) > 0.05 ? requestAnimationFrame(loop) : null;
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      const nx = (e.clientX / window.innerWidth) - 0.5;
+      const ny = (e.clientY / window.innerHeight) - 0.5;
+      targetX = -nx * MAX_SHIFT * 2;
+      targetY = -ny * MAX_SHIFT * 2;
+      if (!raf) raf = requestAnimationFrame(loop);
+    }, { passive: true });
+  }
 })();
 
 /* ==========================================================================

@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body>
 
@@ -156,8 +156,18 @@
         </div>
       </div>
 
-      <div class="hero-visual reveal">
-        <div class="avatar-frame" id="avatar-frame">
+      <div class="hero-visual reveal" id="hero-visual">
+        <div class="hero-video-parallax" id="hero-video-parallax">
+          <div class="hero-video-wrap" id="hero-video-wrap">
+            <video class="hero-video is-active" id="hero-video-day" autoplay muted loop playsinline preload="auto" poster="assets/images/profile.jpg" aria-hidden="true">
+              <source src="assets/video/desk-day.mp4" type="video/mp4">
+            </video>
+            <video class="hero-video" id="hero-video-night" autoplay muted loop playsinline preload="auto" poster="assets/images/profile.jpg" aria-hidden="true">
+              <source src="assets/video/desk-night.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="avatar-frame" id="avatar-frame" hidden>
           <img src="assets/images/profile.jpg" alt="Arhan Khan portrait" onerror="this.remove(); document.getElementById('avatar-frame').classList.add('no-photo')">
         </div>
         <span class="float-badge fb-1">🐍 Python</span>
