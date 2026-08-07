@@ -494,7 +494,10 @@ ul { list-style: none; }
    existing rules above) is untouched. ---------- */
 #hero-video-day {
   mix-blend-mode: multiply;
-  filter: contrast(1.05) saturate(1.05);
+  filter: contrast(1.12) saturate(1.15) brightness(.97);
+  /* feather: opaque through the centre, fully transparent over the outer ~10% on every side */
+  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 90%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 90%, transparent 100%);
 }
 :root[data-theme="light"] .hero-video-parallax { position: relative; }
 :root[data-theme="light"] .hero-video-wrap { z-index: 1; }
@@ -504,10 +507,21 @@ ul { list-style: none; }
   inset: -20%;
   z-index: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,145,66,.34), transparent 70%);
+  background: radial-gradient(circle, rgba(255,145,66,.26), transparent 70%);
   filter: blur(20px);
   pointer-events: none;
 }
+/* The blend above only works if nothing between the video and the page
+   background creates its own stacking context (opacity<1, transform,
+   filter, will-change, backdrop-filter, or position+z-index all trap it).
+   Two shared ancestors do exactly that -- neutralised for light theme only:
+   #hero-visual keeps a lingering `transform: translateY(0)` after its
+   entrance animation (zero visual movement, but still a live transform),
+   and .hero-inner carries position:relative + z-index:1. Dark theme's
+   video has no blend-mode, so it never depended on either -- both base
+   rules are left fully intact for it. */
+:root[data-theme="light"] #hero-visual.reveal.in-view { transform: none; }
+:root[data-theme="light"] .hero-inner { z-index: auto; }
 
 @keyframes hero-float {
   0%, 100% { transform: translateY(0); }
