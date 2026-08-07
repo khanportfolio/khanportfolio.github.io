@@ -510,17 +510,17 @@ ul { list-style: none; }
   mask-composite: intersect;
 }
 :root[data-theme="light"] .hero-video-parallax { position: relative; }
-/* Step 3 (belt-and-braces): resolved page background at the video's position
-   is a flat var(--bg) -- the two decorative hero glow blobs don't reach this
-   far in (checked their radii against this column's coordinates, they fall
-   short). Painting that exact colour as the immediate backdrop means the
-   multiply blend has a guaranteed-correct target regardless of anything else
-   in the ancestor chain, and the backdrop's own edges are invisible since
-   they match the page exactly. NOTE: no z-index here -- .hero-video-wrap
-   already paints after .hero-video-parallax::before in tree order, so it
-   doesn't need one, and adding one (as a previous attempt did) creates a
-   stacking context that traps the blend at this level. */
-:root[data-theme="light"] .hero-video-wrap { background: var(--bg); }
+/* Reverted the flat var(--bg) backdrop that was here: my computed "resolved
+   colour" was wrong (the real page has a warm glow gradient reaching further
+   into this area than calculated), so painting a flat colour created a new,
+   visible mismatch of its own -- a plain box against a page that actually
+   varies in tone there. Trusting the real fix instead: with no z-index on
+   .hero-video-wrap (see note below), it has no stacking context of its own,
+   so the blend reaches straight through to the true page background --
+   gradient and all -- with nothing to compute or guess. NOTE: no z-index
+   here -- .hero-video-wrap already paints after .hero-video-parallax::before
+   in tree order, so it doesn't need one, and adding one (as a previous
+   attempt did) creates a stacking context that traps the blend at this level. */
 :root[data-theme="light"] .hero-video-parallax::before {
   content: '';
   position: absolute;
