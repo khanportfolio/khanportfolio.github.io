@@ -296,9 +296,9 @@ ul { list-style: none; }
 }
 .hero-bigtype {
   position: absolute;
-  top: 48%; left: 50%;
+  top: 48%; left: 27%;
   transform: translate(-50%, -50%);
-  font-size: clamp(9rem, 30vw, 24rem);
+  font-size: clamp(9rem, 22vw, 18rem);
   font-weight: 800;
   line-height: 1;
   color: transparent;
