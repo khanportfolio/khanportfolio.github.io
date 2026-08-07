@@ -109,6 +109,12 @@ ul { list-style: none; }
   transform: translateY(0);
 }
 
+/* Hero visual is above the fold — keep its entrance quick so the video
+   reads as playing immediately, not fading in over the slower page-wide timing */
+#hero-visual.reveal {
+  transition: opacity .2s ease, transform .2s ease;
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -460,6 +466,8 @@ ul { list-style: none; }
   margin: 0 auto;
   overflow: hidden;
   animation: hero-float 6s ease-in-out infinite;
+  -webkit-mask-image: radial-gradient(ellipse 82% 86% at 50% 44%, #000 48%, transparent 96%);
+  mask-image: radial-gradient(ellipse 82% 86% at 50% 44%, #000 48%, transparent 96%);
 }
 .hero-video {
   position: absolute;
