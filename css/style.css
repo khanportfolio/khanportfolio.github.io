@@ -494,17 +494,29 @@ ul { list-style: none; }
    existing rules above) is untouched. ---------- */
 #hero-video-day {
   mix-blend-mode: multiply;
-  filter: contrast(1.12) saturate(1.15) brightness(.97);
-  /* feather: opaque through the centre, fully transparent over the outer ~10% on every side */
-  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 90%, transparent 100%);
-  mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 90%, transparent 100%);
+  /* brightness kept conservative -- the hoodie in this footage already sits at
+     ~245-249 with zero boost, so pushing brightness far enough to fully whiten
+     the edge band (needs ~1.25+) clips it to a flat white blob. The wide
+     feather below does the real work of hiding the residual edge tone. */
+  filter: contrast(1.06) saturate(1.12) brightness(1.03);
+  /* feather: two independent linear fades (not a radial -- a radial clips the
+     desk/chair corners) intersected so left/right fade over the outer 20%
+     and top/bottom over the outer 15%. */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 20%, #000 80%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 20%, #000 80%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
+  mask-composite: intersect;
 }
 :root[data-theme="light"] .hero-video-parallax { position: relative; }
 :root[data-theme="light"] .hero-video-wrap { z-index: 1; }
 :root[data-theme="light"] .hero-video-parallax::before {
   content: '';
   position: absolute;
-  inset: -20%;
+  inset: -32%;
   z-index: 0;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255,145,66,.26), transparent 70%);
