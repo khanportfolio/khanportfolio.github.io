@@ -469,6 +469,13 @@ ul { list-style: none; }
   -webkit-mask-image: radial-gradient(ellipse at 50% 44%, #000 42%, rgba(0,0,0,.6) 62%, transparent 88%);
   mask-image: radial-gradient(ellipse at 50% 44%, #000 42%, rgba(0,0,0,.6) 62%, transparent 88%);
 }
+.hero-video-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 44%, transparent 38%, var(--bg) 82%);
+  pointer-events: none;
+}
 .hero-video {
   position: absolute;
   inset: 0;
