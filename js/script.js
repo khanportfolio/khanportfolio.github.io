@@ -30,22 +30,25 @@ function getEffectiveTheme() {
 (function heroAvatarVideo() {
   const dayVideo = document.getElementById('hero-video-day');
   const nightVideo = document.getElementById('hero-video-night');
+  const dayFrame = document.getElementById('hero-frame-day');
+  const nightFrame = document.getElementById('hero-frame-night');
   const parallaxEl = document.getElementById('hero-video-parallax');
   const avatarFrame = document.getElementById('avatar-frame');
-  if (!dayVideo || !nightVideo || !parallaxEl || !avatarFrame) return;
+  if (!dayVideo || !nightVideo || !dayFrame || !nightFrame || !parallaxEl || !avatarFrame) return;
 
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const conn = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
   const isSaveData = !!(conn && (conn.saveData || ['slow-2g', '2g'].includes(conn.effectiveType)));
+  const frameOf = { day: dayFrame, night: nightFrame };
+  const videoOf = { day: dayVideo, night: nightVideo };
 
-  if (isSaveData) {
-    // stop whatever native autoplay may have already kicked off, and stop further buffering
-    dayVideo.pause(); nightVideo.pause();
-    dayVideo.preload = 'none'; nightVideo.preload = 'none';
-    dayVideo.removeAttribute('autoplay'); nightVideo.removeAttribute('autoplay');
-  }
+  // iOS ignores the muted attribute in some cases -- set the property too.
+  dayVideo.muted = true;
+  nightVideo.muted = true;
 
   let failed = { day: false, night: false };
+  let autoplayBlocked = { day: false, night: false };
+
   function showFallback() {
     parallaxEl.style.display = 'none';
     avatarFrame.hidden = false;
@@ -66,20 +69,54 @@ function getEffectiveTheme() {
     checkFallback();
   }, 4000);
 
-  function tryPlay(video) {
-    if (isSaveData) return; // stay on poster frame to respect data-saver mode
+  // fade a video in once it has an actual decoded frame -- guards against
+  // the loadeddata listener attaching after the event already fired.
+  function wireReady(video) {
+    function markReady() { video.classList.add('is-ready'); }
+    if (video.readyState >= 2) markReady();
+    else video.addEventListener('loadeddata', markReady, { once: true });
+  }
+  wireReady(dayVideo);
+  wireReady(nightVideo);
+
+  // silent fallback to the matching static first-frame still -- never the
+  // old headshot -- when autoplay is rejected (iOS low-power/Data Saver) or
+  // save-data mode skips video entirely. Never leaves a native play button.
+  function showFrameFallback(key) {
+    autoplayBlocked[key] = true;
+    videoOf[key].classList.remove('is-ready');
+    frameOf[key].classList.toggle('is-shown', isActiveKey(key));
+  }
+  function isActiveKey(key) {
+    const isDark = getEffectiveTheme() === 'dark';
+    return isDark ? key === 'night' : key === 'day';
+  }
+
+  function tryPlay(video, key) {
+    if (isSaveData) { showFrameFallback(key); return; }
+    video.muted = true;
     const p = video.play();
-    if (p && p.catch) p.catch(() => {});
+    if (p && p.catch) p.catch(() => { showFrameFallback(key); });
   }
 
   function applyTheme() {
     if (failed.day && failed.night) return;
     const isDark = getEffectiveTheme() === 'dark';
-    const active = isDark ? nightVideo : dayVideo;
-    const inactive = isDark ? dayVideo : nightVideo;
+    const activeKey = isDark ? 'night' : 'day';
+    const inactiveKey = isDark ? 'day' : 'night';
+    const active = videoOf[activeKey];
+    const inactive = videoOf[inactiveKey];
+
+    // only the active theme's video downloads up front (Bug 3) -- the
+    // inactive one stays preload="none" until its theme is actually chosen.
+    if (active.preload !== 'auto') { active.preload = 'auto'; active.load(); wireReady(active); }
+
     active.classList.add('is-active');
     inactive.classList.remove('is-active');
-    tryPlay(active);
+    frameOf[activeKey].classList.toggle('is-shown', autoplayBlocked[activeKey]);
+    frameOf[inactiveKey].classList.remove('is-shown');
+
+    if (!isSaveData && !autoplayBlocked[activeKey]) tryPlay(active, activeKey);
     inactive.pause();
   }
 
@@ -87,6 +124,12 @@ function getEffectiveTheme() {
   if (reducedMotion) {
     dayVideo.pause();
     nightVideo.pause();
+  }
+  if (isSaveData) {
+    // stop whatever native autoplay may have already kicked off, and stop further buffering
+    dayVideo.pause(); nightVideo.pause();
+    dayVideo.removeAttribute('autoplay'); nightVideo.removeAttribute('autoplay');
+    showFrameFallback(getEffectiveTheme() === 'dark' ? 'night' : 'day');
   }
 
   // react to theme changes (toggle click updates the attribute; also cover system-preference changes)
