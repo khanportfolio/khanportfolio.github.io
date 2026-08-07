@@ -466,9 +466,6 @@ ul { list-style: none; }
   margin: 0 auto;
   overflow: hidden;
   animation: hero-float 6s ease-in-out infinite;
-  /* resolved page background colour -- nothing to see under the video
-     before it paints its first frame, now that poster is gone. */
-  background: var(--bg);
 }
 .hero-video {
   position: absolute;
@@ -502,9 +499,13 @@ ul { list-style: none; }
 ::-webkit-media-controls-start-playback-button { display: none !important; }
 
 /* static first-frame stills (extracted from each theme's own video, never
-   the old headshot) -- shown only as a silent fallback when autoplay is
-   rejected (iOS low-power/data-saver) or save-data mode skips the video
-   entirely. Hidden by default; JS toggles .is-shown. */
+   the old headshot). Hidden by default -- the wrap has no background of its
+   own (a flat var(--bg) fill was tried here and reintroduced the box-edge
+   mismatch on both themes, since a flat colour doesn't track the page's
+   real gradient), so before the video paints, the true page background
+   already shows through directly with nothing to mismatch. JS only shows
+   a still if autoplay is rejected (iOS low-power/data-saver) or save-data
+   mode skips the video entirely. */
 .hero-video-fallback-frame {
   position: absolute;
   inset: 0;

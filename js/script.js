@@ -69,15 +69,10 @@ function getEffectiveTheme() {
     checkFallback();
   }, 4000);
 
-  // fade a video in once it has an actual decoded frame -- guards against
-  // the loadeddata listener attaching after the event already fired.
-  function wireReady(video) {
-    function markReady() { video.classList.add('is-ready'); }
-    if (video.readyState >= 2) markReady();
-    else video.addEventListener('loadeddata', markReady, { once: true });
+  function isActiveKey(key) {
+    const isDark = getEffectiveTheme() === 'dark';
+    return isDark ? key === 'night' : key === 'day';
   }
-  wireReady(dayVideo);
-  wireReady(nightVideo);
 
   // silent fallback to the matching static first-frame still -- never the
   // old headshot -- when autoplay is rejected (iOS low-power/Data Saver) or
@@ -85,11 +80,7 @@ function getEffectiveTheme() {
   function showFrameFallback(key) {
     autoplayBlocked[key] = true;
     videoOf[key].classList.remove('is-ready');
-    frameOf[key].classList.toggle('is-shown', isActiveKey(key));
-  }
-  function isActiveKey(key) {
-    const isDark = getEffectiveTheme() === 'dark';
-    return isDark ? key === 'night' : key === 'day';
+    if (isActiveKey(key)) frameOf[key].classList.add('is-shown');
   }
 
   function tryPlay(video, key) {
@@ -97,6 +88,24 @@ function getEffectiveTheme() {
     video.muted = true;
     const p = video.play();
     if (p && p.catch) p.catch(() => { showFrameFallback(key); });
+  }
+
+  // fade a video in (and hide its placeholder still) once it has an actual
+  // decoded frame -- guards against the loadeddata listener attaching after
+  // the event already fired. Playback is only attempted once we know the
+  // video is ready, never immediately after load() -- calling play() in the
+  // same tick as load() races the browser's own buffering on mobile and can
+  // leave the video permanently stuck on its rejected-play fallback frame.
+  function wireReady(video, key) {
+    function onReady() {
+      video.classList.add('is-ready');
+      if (!autoplayBlocked[key] && isActiveKey(key)) {
+        frameOf[key].classList.remove('is-shown');
+        tryPlay(video, key);
+      }
+    }
+    if (video.readyState >= 2) onReady();
+    else video.addEventListener('loadeddata', onReady, { once: true });
   }
 
   function applyTheme() {
@@ -107,16 +116,25 @@ function getEffectiveTheme() {
     const active = videoOf[activeKey];
     const inactive = videoOf[inactiveKey];
 
-    // only the active theme's video downloads up front (Bug 3) -- the
-    // inactive one stays preload="none" until its theme is actually chosen.
-    if (active.preload !== 'auto') { active.preload = 'auto'; active.load(); wireReady(active); }
-
     active.classList.add('is-active');
     inactive.classList.remove('is-active');
-    frameOf[activeKey].classList.toggle('is-shown', autoplayBlocked[activeKey]);
     frameOf[inactiveKey].classList.remove('is-shown');
 
-    if (!isSaveData && !autoplayBlocked[activeKey]) tryPlay(active, activeKey);
+    // only the active theme's video downloads up front (Bug 3) -- the
+    // inactive one stays preload="none" until its theme is actually chosen.
+    // Playback is deferred to wireReady's onReady so load() and play() never
+    // race each other.
+    if (active.preload !== 'auto') {
+      active.preload = 'auto';
+      active.load();
+      wireReady(active, activeKey);
+    } else if (active.classList.contains('is-ready') && !autoplayBlocked[activeKey]) {
+      frameOf[activeKey].classList.remove('is-shown');
+      tryPlay(active, activeKey);
+    } else if (autoplayBlocked[activeKey]) {
+      frameOf[activeKey].classList.add('is-shown');
+    }
+
     inactive.pause();
   }
 
