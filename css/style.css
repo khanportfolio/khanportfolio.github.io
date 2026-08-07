@@ -471,10 +471,19 @@ ul { list-style: none; }
   content: '';
   position: absolute;
   inset: 0;
-  /* shared by both themes -- fades the video edges to the current page background */
+  /* dark theme only now -- fades the video edges to the flat dark bg, which
+     is confirmed working since dark theme has no glow-gradient mismatch at
+     this spot. Disabled for light theme below: this same flat-colour fade
+     was the actual cause of light theme's visible rectangle -- it paints
+     var(--bg) at the edges with normal (non-blend) compositing, which
+     doesn't match the page's real glow-tinted variation there, creating
+     exactly the box-edge mismatch reported. Light theme now relies purely
+     on #hero-video-day's own mask-image feather + multiply blend, which
+     reaches the true (correctly-varying) page background directly. */
   background: radial-gradient(ellipse closest-side at 50% 44%, transparent 35%, var(--bg) 100%);
   pointer-events: none;
 }
+:root[data-theme="light"] .hero-video-wrap::after { content: none; }
 .hero-video {
   position: absolute;
   inset: 0;
