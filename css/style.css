@@ -466,14 +466,14 @@ ul { list-style: none; }
   margin: 0 auto;
   overflow: hidden;
   animation: hero-float 6s ease-in-out infinite;
-  -webkit-mask-image: radial-gradient(ellipse at 50% 44%, #000 42%, rgba(0,0,0,.6) 62%, transparent 88%);
-  mask-image: radial-gradient(ellipse at 50% 44%, #000 42%, rgba(0,0,0,.6) 62%, transparent 88%);
+  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 40%, rgba(0,0,0,.5) 65%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 40%, rgba(0,0,0,.5) 65%, transparent 100%);
 }
 .hero-video-wrap::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 44%, transparent 38%, var(--bg) 82%);
+  background: radial-gradient(ellipse closest-side at 50% 44%, transparent 35%, var(--bg) 100%);
   pointer-events: none;
 }
 .hero-video {
@@ -1887,14 +1887,9 @@ html[lang="de"] .media-img-wrap::after {
     min-height: 480px;
     z-index: 0;
   }
-  .hero-visual::before {
-    content: '';
-    position: absolute;
-    inset: -70px;
-    background: radial-gradient(circle at 55% 42%, rgba(255,145,66,.32), transparent 68%);
-    filter: blur(24px);
-    z-index: -1;
-  }
+  /* Removed the separate ambient glow here -- the avatar video already bakes its
+     own matching glow into its pixels, and a second independent glow layer behind
+     it created a visible tint mismatch right at the video's edge (see below). */
   .avatar-frame {
     width: 380px;
     height: 440px;
