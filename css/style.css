@@ -471,8 +471,13 @@ ul { list-style: none; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse closest-side at 50% 44%, transparent 20%, var(--bg) 92%, var(--bg) 100%);
+  /* dark theme -- confirmed working, do not change */
+  background: radial-gradient(ellipse closest-side at 50% 44%, transparent 35%, var(--bg) 100%);
   pointer-events: none;
+}
+/* light theme only: tuned separately from dark, isolated so it can never affect it */
+:root[data-theme="light"] .hero-video-wrap::after {
+  background: radial-gradient(ellipse closest-side at 50% 44%, transparent 48%, var(--bg) 92%, var(--bg) 100%);
 }
 .hero-video {
   position: absolute;
