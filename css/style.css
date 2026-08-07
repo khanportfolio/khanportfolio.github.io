@@ -494,11 +494,9 @@ ul { list-style: none; }
    existing rules above) is untouched. ---------- */
 #hero-video-day {
   mix-blend-mode: multiply;
-  /* brightness kept conservative -- the hoodie in this footage already sits at
-     ~245-249 with zero boost, so pushing brightness far enough to fully whiten
-     the edge band (needs ~1.25+) clips it to a flat white blob. The wide
-     feather below does the real work of hiding the residual edge tone. */
-  filter: contrast(1.06) saturate(1.12) brightness(1.03);
+  /* no brightness() -- it pushes the background whiter, fighting the blend
+     instead of helping it. */
+  filter: contrast(1.05) saturate(1.1);
   /* feather: two independent linear fades (not a radial -- a radial clips the
      desk/chair corners) intersected so left/right fade over the outer 20%
      and top/bottom over the outer 15%. */
@@ -512,7 +510,17 @@ ul { list-style: none; }
   mask-composite: intersect;
 }
 :root[data-theme="light"] .hero-video-parallax { position: relative; }
-:root[data-theme="light"] .hero-video-wrap { z-index: 1; }
+/* Step 3 (belt-and-braces): resolved page background at the video's position
+   is a flat var(--bg) -- the two decorative hero glow blobs don't reach this
+   far in (checked their radii against this column's coordinates, they fall
+   short). Painting that exact colour as the immediate backdrop means the
+   multiply blend has a guaranteed-correct target regardless of anything else
+   in the ancestor chain, and the backdrop's own edges are invisible since
+   they match the page exactly. NOTE: no z-index here -- .hero-video-wrap
+   already paints after .hero-video-parallax::before in tree order, so it
+   doesn't need one, and adding one (as a previous attempt did) creates a
+   stacking context that traps the blend at this level. */
+:root[data-theme="light"] .hero-video-wrap { background: var(--bg); }
 :root[data-theme="light"] .hero-video-parallax::before {
   content: '';
   position: absolute;
