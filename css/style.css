@@ -475,19 +475,11 @@ ul { list-style: none; }
   background: radial-gradient(ellipse closest-side at 50% 44%, transparent 35%, var(--bg) 100%);
   pointer-events: none;
 }
-/* light theme only: tuned separately from dark, isolated so it can never affect it.
-   Uses an inset box-shadow vignette instead of a radial gradient -- it fades
-   uniformly from all four edges inward toward the exact page background color,
-   which is simpler and more predictable than getting an off-center ellipse's
-   math right. */
+/* light theme: desk-day.mp4 now has its edge fade + vignette baked directly into
+   the video's own pixels (pre-cropped to the exact 4:5 box aspect too), verified
+   frame-by-frame before export -- no CSS-side fade needed for it any more. */
 :root[data-theme="light"] .hero-video-wrap::after {
-  background: none;
-  box-shadow: inset 0 0 45px 30px var(--bg);
-}
-@media (min-width: 901px) {
-  :root[data-theme="light"] .hero-video-wrap::after {
-    box-shadow: inset 0 0 80px 50px var(--bg);
-  }
+  content: none;
 }
 .hero-video {
   position: absolute;
