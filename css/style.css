@@ -457,36 +457,23 @@ ul { list-style: none; }
 .hero-video-parallax {
   width: 100%;
   max-width: 340px;
-  position: relative;
-}
-/* Soft accent glow behind the video, larger than the box, so the feathered
-   edge dissolves into the glow instead of into flat page background. */
-.hero-video-parallax::before {
-  content: '';
-  position: absolute;
-  inset: -18%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,145,66,.32), transparent 70%);
-  filter: blur(20px);
-  z-index: 0;
-  pointer-events: none;
 }
 .hero-video-wrap {
   position: relative;
-  z-index: 1;
   width: 100%;
   aspect-ratio: 4 / 5;
   max-height: 240px;
   margin: 0 auto;
   overflow: hidden;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
   animation: hero-float 6s ease-in-out infinite;
-  /* feather: fully opaque center, fully transparent ~8% from each edge -- no hard box edge */
-  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 92%, transparent 100%);
-  mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 92%, transparent 100%);
+}
+.hero-video-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* shared by both themes -- fades the video edges to the current page background */
+  background: radial-gradient(ellipse closest-side at 50% 44%, transparent 35%, var(--bg) 100%);
+  pointer-events: none;
 }
 .hero-video {
   position: absolute;
@@ -495,19 +482,11 @@ ul { list-style: none; }
   height: 100%;
   object-fit: cover;
   object-position: 62% 48%;
-  background: transparent;
   pointer-events: none;
   opacity: 0;
-  filter: contrast(1.05) saturate(1.05);
   transition: opacity .6s ease;
 }
 .hero-video.is-active { opacity: 1; }
-/* kill the light halo baked into the source: multiply in light theme
-   (light background pixels recede toward whatever's behind), screen in
-   dark theme (the equivalent brightening blend for a dark backdrop) --
-   driven off the same data-theme attribute the toggle already sets. */
-:root[data-theme="light"] .hero-video { mix-blend-mode: multiply; }
-:root[data-theme="dark"] .hero-video { mix-blend-mode: screen; }
 
 @keyframes hero-float {
   0%, 100% { transform: translateY(0); }
