@@ -471,15 +471,9 @@ ul { list-style: none; }
   content: '';
   position: absolute;
   inset: 0;
-  /* dark theme -- confirmed working, do not change */
+  /* shared by both themes -- fades the video edges to the current page background */
   background: radial-gradient(ellipse closest-side at 50% 44%, transparent 35%, var(--bg) 100%);
   pointer-events: none;
-}
-/* light theme: desk-day.mp4 now has its edge fade + vignette baked directly into
-   the video's own pixels (pre-cropped to the exact 4:5 box aspect too), verified
-   frame-by-frame before export -- no CSS-side fade needed for it any more. */
-:root[data-theme="light"] .hero-video-wrap::after {
-  content: none;
 }
 .hero-video {
   position: absolute;
