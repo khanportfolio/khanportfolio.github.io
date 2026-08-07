@@ -466,14 +466,12 @@ ul { list-style: none; }
   margin: 0 auto;
   overflow: hidden;
   animation: hero-float 6s ease-in-out infinite;
-  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 40%, rgba(0,0,0,.5) 65%, transparent 100%);
-  mask-image: radial-gradient(ellipse closest-side at 50% 44%, #000 40%, rgba(0,0,0,.5) 65%, transparent 100%);
 }
 .hero-video-wrap::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse closest-side at 50% 44%, transparent 35%, var(--bg) 100%);
+  background: radial-gradient(ellipse closest-side at 50% 44%, transparent 20%, var(--bg) 92%, var(--bg) 100%);
   pointer-events: none;
 }
 .hero-video {
