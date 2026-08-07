@@ -50,8 +50,21 @@ function getEffectiveTheme() {
     parallaxEl.style.display = 'none';
     avatarFrame.hidden = false;
   }
-  dayVideo.addEventListener('error', () => { failed.day = true; if (failed.night) showFallback(); });
-  nightVideo.addEventListener('error', () => { failed.night = true; if (failed.day) showFallback(); });
+  function checkFallback() {
+    const isDark = getEffectiveTheme() === 'dark';
+    const activeFailed = isDark ? failed.night : failed.day;
+    if (activeFailed || (failed.day && failed.night)) showFallback();
+  }
+  dayVideo.addEventListener('error', () => { failed.day = true; checkFallback(); });
+  nightVideo.addEventListener('error', () => { failed.night = true; checkFallback(); });
+  // defensive backstop: a video that neither errors nor ever becomes ready
+  // (e.g. a bad/missing file the browser can't even start probing) would
+  // otherwise leave an empty box -- catch that via readyState after a beat.
+  setTimeout(() => {
+    if (dayVideo.readyState === 0) { failed.day = true; }
+    if (nightVideo.readyState === 0) { failed.night = true; }
+    checkFallback();
+  }, 4000);
 
   function tryPlay(video) {
     if (isSaveData) return; // stay on poster frame to respect data-saver mode

@@ -488,6 +488,27 @@ ul { list-style: none; }
 }
 .hero-video.is-active { opacity: 1; }
 
+/* ---------- Light theme only: desk-day.mp4 removed via blend mode, not
+   keying/masking. Everything here is scoped to data-theme="light" and/or
+   #hero-video-day specifically -- dark theme (#hero-video-night and its
+   existing rules above) is untouched. ---------- */
+#hero-video-day {
+  mix-blend-mode: multiply;
+  filter: contrast(1.05) saturate(1.05);
+}
+:root[data-theme="light"] .hero-video-parallax { position: relative; }
+:root[data-theme="light"] .hero-video-wrap { z-index: 1; }
+:root[data-theme="light"] .hero-video-parallax::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,145,66,.34), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
 @keyframes hero-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
