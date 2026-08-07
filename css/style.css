@@ -467,23 +467,6 @@ ul { list-style: none; }
   overflow: hidden;
   animation: hero-float 6s ease-in-out infinite;
 }
-.hero-video-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  /* dark theme only now -- fades the video edges to the flat dark bg, which
-     is confirmed working since dark theme has no glow-gradient mismatch at
-     this spot. Disabled for light theme below: this same flat-colour fade
-     was the actual cause of light theme's visible rectangle -- it paints
-     var(--bg) at the edges with normal (non-blend) compositing, which
-     doesn't match the page's real glow-tinted variation there, creating
-     exactly the box-edge mismatch reported. Light theme now relies purely
-     on #hero-video-day's own mask-image feather + multiply blend, which
-     reaches the true (correctly-varying) page background directly. */
-  background: radial-gradient(ellipse closest-side at 50% 44%, transparent 35%, var(--bg) 100%);
-  pointer-events: none;
-}
-:root[data-theme="light"] .hero-video-wrap::after { content: none; }
 .hero-video {
   position: absolute;
   inset: 0;
@@ -494,21 +477,12 @@ ul { list-style: none; }
   pointer-events: none;
   opacity: 0;
   transition: opacity .6s ease;
-}
-.hero-video.is-active { opacity: 1; }
-
-/* ---------- Light theme only: desk-day.mp4 removed via blend mode, not
-   keying/masking. Everything here is scoped to data-theme="light" and/or
-   #hero-video-day specifically -- dark theme (#hero-video-night and its
-   existing rules above) is untouched. ---------- */
-#hero-video-day {
-  mix-blend-mode: multiply;
-  /* no brightness() -- it pushes the background whiter, fighting the blend
-     instead of helping it. */
-  filter: contrast(1.05) saturate(1.1);
-  /* feather: two independent linear fades (not a radial -- a radial clips the
-     desk/chair corners) intersected so left/right fade over the outer 20%
-     and top/bottom over the outer 15%. */
+  /* feather shared by both themes: two independent linear fades (not a
+     radial -- a radial's "closest side" shrinks to almost nothing on the
+     narrow mobile box, which is what made dark theme look like a hard-edged
+     square there) intersected so left/right fade over the outer 20% and
+     top/bottom over the outer 15%. This lets the true page background show
+     through at the edges in both themes, at any aspect ratio. */
   -webkit-mask-image:
     linear-gradient(to right, transparent 0%, #000 20%, #000 80%, transparent 100%),
     linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
@@ -517,6 +491,18 @@ ul { list-style: none; }
     linear-gradient(to right, transparent 0%, #000 20%, #000 80%, transparent 100%),
     linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
   mask-composite: intersect;
+}
+.hero-video.is-active { opacity: 1; }
+
+/* ---------- Light theme only: desk-day.mp4 removed via blend mode, not
+   keying/masking. Scoped to #hero-video-day specifically -- dark theme
+   (#hero-video-night) never gets a blend-mode or filter, only the shared
+   mask-image feather above. ---------- */
+#hero-video-day {
+  mix-blend-mode: multiply;
+  /* no brightness() -- it pushes the background whiter, fighting the blend
+     instead of helping it. */
+  filter: contrast(1.05) saturate(1.1);
 }
 :root[data-theme="light"] .hero-video-parallax { position: relative; }
 /* Reverted the flat var(--bg) backdrop that was here: my computed "resolved
