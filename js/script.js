@@ -180,6 +180,40 @@ function getEffectiveTheme() {
 })();
 
 /* ==========================================================================
+   Mobile-showcase phone videos — play on scroll into view, pause off-screen.
+   Covers mobile browsers that otherwise leave autoplay blocked until a tap.
+   ========================================================================== */
+(function phoneVideoAutoplay() {
+  const videos = Array.from(document.querySelectorAll('.phone-video'));
+  if (!videos.length) return;
+
+  videos.forEach(v => { v.muted = true; });
+
+  function tryPlay(video) {
+    const p = video.play();
+    if (p && p.catch) p.catch(() => {});
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) tryPlay(entry.target);
+      else entry.target.pause();
+    });
+  }, { threshold: 0.35 });
+
+  videos.forEach(v => observer.observe(v));
+
+  // iOS/Android can still hold autoplay back until a user gesture even with
+  // muted+playsinline -- retry once on first touch so it never gets stuck
+  // on the poster frame needing a manual tap.
+  function retryOnce() {
+    videos.forEach(v => { if (v.paused) tryPlay(v); });
+    document.removeEventListener('touchstart', retryOnce);
+  }
+  document.addEventListener('touchstart', retryOnce, { once: true, passive: true });
+})();
+
+/* ==========================================================================
    Language switch (EN / DE) — toggles paired [data-lang] blocks
    ========================================================================== */
 (function languageSwitch() {

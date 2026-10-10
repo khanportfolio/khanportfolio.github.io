@@ -867,6 +867,7 @@ ul { list-style: none; }
 }
 .exp-stat-strip { display: none; }
 .badge-current { display: none; }
+.timeline-swipe-hint { display: none; }
 
 @media (max-width: 900px) {
   .exp-stat-strip {
@@ -918,6 +919,44 @@ ul { list-style: none; }
     top: 0;
     line-height: 1.4;
   }
+
+  /* Horizontal swipe instead of one long vertical stack of job cards */
+  .timeline-swipe-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .76rem;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+  .timeline-swipe-hint svg { flex: none; animation: swipeHint 1.6s ease-in-out infinite; }
+  @keyframes swipeHint {
+    0%, 100% { transform: translateX(0); opacity: .55; }
+    50% { transform: translateX(5px); opacity: 1; }
+  }
+
+  .timeline {
+    flex-direction: row;
+    border-left: none;
+    padding-left: 0;
+    gap: 14px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 2px;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+  .timeline-item {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+    align-self: flex-start;
+  }
+  .timeline-dot { display: none; }
+}
+
+@media (max-width: 480px) {
+  .timeline-item { flex-basis: 88%; }
 }
 
 .badge-founder {
@@ -1342,10 +1381,14 @@ html[lang="de"] .media-img-wrap::after {
 }
 
 @media (max-width: 620px) {
-  .phone-mock { width: 220px; }
+  .phone-row { gap: 22px; }
+  .phone-mock { width: 200px; }
 }
-@media (max-width: 420px) {
-  .phone-mock { width: 180px; }
+@media (max-width: 480px) {
+  .phone-row { flex-wrap: nowrap; gap: 12px; align-items: flex-start; }
+  .phone-item { flex: 1 1 0; min-width: 0; }
+  .phone-mock { width: 100%; max-width: 165px; margin: 0 auto; }
+  .phone-caption { font-size: .72rem; text-align: center; }
 }
 
 .tools-plate {
