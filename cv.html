@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arhan Khan — CV</title>
-<meta name="description" content="Arhan Khan — Werkstudent Software Development & IT/Digital Operations. Curriculum Vitae.">
+<meta name="description" content="Arhan Khan — Software Developer &amp; Digital Operations. Curriculum Vitae.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ff6a3d'/%3E%3Cstop offset='.5' stop-color='%23ff9142'/%3E%3Cstop offset='1' stop-color='%23ffc978'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-size='28' font-family='Arial,sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EAK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +64,12 @@
   .entry ul { margin: 5px 0 0 18px; }
   .entry li { font-size: .8rem; color: var(--text-dim); margin-bottom: 2px; }
 
-  .proj-title { font-weight: 700; font-size: .88rem; }
+  .proj-title { font-weight: 700; font-size: .88rem; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .proj-badge {
+    display: inline-block; font-size: .62rem; font-weight: 800; letter-spacing: .03em;
+    text-transform: uppercase; color: #fff; background: var(--gradient);
+    border-radius: 999px; padding: 2px 8px;
+  }
   .proj-stack { font-size: .74rem; color: var(--accent-1); font-family: ui-monospace, monospace; margin: 1px 0 3px; }
   .proj-desc { font-size: .79rem; color: var(--text-dim); }
 
@@ -84,10 +89,17 @@
   .lang-row span:last-child { color: var(--text-dim); }
 
   @media print {
-    body { background: #fff; padding: 0; }
+    body { background: #fff; padding: 0; font-size: 91%; }
     .toolbar { display: none; }
-    .page { box-shadow: none; border-radius: 0; padding: 22px 6px; max-width: 100%; }
-    @page { margin: 14mm; }
+    .page { box-shadow: none; border-radius: 0; padding: 0; max-width: 100%; }
+    @page { margin: 11mm; }
+    header { margin-bottom: 14px; padding-bottom: 12px; }
+    section { margin-bottom: 13px; }
+    h2 { margin-bottom: 6px; padding-bottom: 3px; }
+    .entry { margin-bottom: 8px; }
+    .entry ul { margin-top: 4px; }
+    .entry li { margin-bottom: 1px; line-height: 1.38; }
+    .profile { line-height: 1.42; }
   }
   @media (max-width: 640px) {
     .page { padding: 30px 22px; }
@@ -111,7 +123,7 @@
   <header>
     <div>
       <h1>Arhan Khan</h1>
-      <p class="role">Werkstudent Software Development / IT &amp; Digital Operations</p>
+      <p class="role">Software Developer &amp; Digital Operations | Project &amp; Operations Manager</p>
     </div>
     <div class="contact">
       Stuttgart, 70569, Germany<br>
@@ -123,7 +135,7 @@
 
   <section>
     <h2>Profile</h2>
-    <p class="profile">Student of Informatik &amp; Management (B.Sc.) with hands-on experience in software development, data management, and digital marketing. Independently builds and ships production-ready SaaS software (Django, Python, JavaScript, REST APIs, Claude API integration) alongside operational experience in CRM data management, sales pipeline tracking, SEO, and structured reporting. Reliable, structured, and detail-oriented. Languages: English (C2), German (B1).</p>
+    <p class="profile">Student of Digital Technology &amp; Management (B.Sc.) who independently designs, builds, and ships production-ready software, using Django, Python, JavaScript, REST APIs, and Claude API integrations, while simultaneously owning real operational work in CRM data management, sales pipelines, SEO, and structured reporting. Currently leads five live, self-built SaaS platforms in production use at ReRent, and previously founded and grew a study-abroad guidance company to €8,000+ in first-year revenue. Structured, detail-oriented, and comfortable working end-to-end from requirements through deployment. Languages: English (C2), German (B1).</p>
   </section>
 
   <section>
@@ -136,8 +148,8 @@
       </div>
       <div class="entry-org">ReRent GbR · Stuttgart, Germany</div>
       <ul>
-        <li>Own end-to-end delivery of internal SaaS software — from requirements to technical build to production rollout — coordinating with development and DevOps.</li>
-        <li>Led the design and deployment of 5 custom SaaS platforms now in production use: a QA management platform, an AI content generator, a task/hours tracker, a custom CRM, and an AI-powered lead generation engine.</li>
+        <li>Own end-to-end delivery of internal software tools — from requirements gathering through technical build to production rollout — coordinating closely with development and DevOps.</li>
+        <li>Led the design and deployment of five custom SaaS platforms now in production use: a QA management platform, an AI content generator, a task/hours tracker, a custom CRM, and an AI-powered lead generation engine.</li>
         <li>Manage the sales pipeline (leads, client interactions, deal status) across internal tracking systems, ensuring data accuracy at every stage.</li>
         <li>Own SEO and inbound marketing strategy; oversee the social media team (Instagram, LinkedIn) and track results via custom Excel dashboards.</li>
       </ul>
@@ -150,9 +162,11 @@
       </div>
       <div class="entry-org">Studio Abroad · India (Remote)</div>
       <ul>
-        <li>Founded and built Studio Abroad end-to-end — website, social channels, and Meta Ads — helping international students with university applications, entrance exam prep, and study-abroad guidance.</li>
+        <li>Founded and built Studio Abroad end-to-end — website, social channels, and Meta Ads — helping international students with university applications, entrance exam preparation, and study-abroad guidance.</li>
         <li>Generated €8,000+ in revenue within the first year of operation.</li>
-        <li>Coordinated global student recruitment operations; maintained CRM data integrity for 100+ active leads.</li>
+        <li>Coordinated global student recruitment operations and maintained CRM data integrity for 100+ active leads.</li>
+        <li>Planned and executed multi-channel marketing campaigns (Instagram, Facebook, LinkedIn) with structured KPI reporting in Excel.</li>
+        <li>Wrote SOPs and process documentation that reduced onboarding time for new team members.</li>
       </ul>
     </div>
 
@@ -184,6 +198,11 @@
   <section>
     <h2>Featured Projects</h2>
 
+    <div class="entry">
+      <div class="proj-title">BMW DMC AI Verifier <span class="proj-badge">Hackathon</span></div>
+      <div class="proj-stack">FastAPI · Python · TypeScript · SQLite · Computer Vision · Automated Testing</div>
+      <div class="proj-desc">Team hackathon project building a scanning and validation tool for BMW's GS91010-2 Data Matrix Code part-marking standard. Owned the rule validation engine covering 26 real GS91010-2 layouts, a self-healing auto-correction engine that detects and proposes fixes for codes damaged by up to ~30%, and camera-scanning reliability improvements including automatic symbol localization and an ISO 29158-style defect visualization. Verified with 160+ backend and 50+ frontend automated tests.</div>
+    </div>
     <div class="entry">
       <div class="proj-title">ReRent Bug Tracker &amp; QA Management Platform</div>
       <div class="proj-stack">Django 6.0 · Python 3.14 · JavaScript (AJAX) · SQLite</div>
@@ -220,15 +239,15 @@
     <section>
       <h2>Education</h2>
       <div class="edu-row">
-        <div><strong>B.Sc. Informatik &amp; Management</strong><span class="edu-loc">Stuttgart, Germany</span></div>
+        <div><strong>B.Sc. Digital Technology &amp; Management</strong><span class="edu-loc">Hochschule der Medien, Germany</span></div>
         <span class="edu-date">2025–2028</span>
       </div>
       <div class="edu-row">
-        <div><strong>Diploma in Informatik</strong><span class="edu-loc">Bengaluru, India</span></div>
+        <div><strong>Diploma in Informatik</strong><span class="edu-loc">R.V. University, Bengaluru, India</span></div>
         <span class="edu-date">2023–2025</span>
       </div>
       <div class="edu-row">
-        <div><strong>Adv. Diploma in Computer Applications</strong><span class="edu-loc">Mumbai, India</span></div>
+        <div><strong>Adv. Diploma in Computer Applications</strong><span class="edu-loc">Swami Vivekanand Institute, Mumbai, India</span></div>
         <span class="edu-date">2021–2022</span>
       </div>
 
@@ -243,25 +262,25 @@
       <div class="skill-group">
         <div class="skill-label">Programming</div>
         <div class="pill-row">
-          <span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">HTML/CSS</span><span class="pill">C/C++ basics</span>
+          <span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">TypeScript</span><span class="pill">HTML/CSS</span><span class="pill">C/C++ basics</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-label">Frameworks &amp; Tools</div>
+        <div class="skill-label">Frameworks &amp; Infrastructure</div>
         <div class="pill-row">
-          <span class="pill">Django</span><span class="pill">REST APIs</span><span class="pill">SQLite</span><span class="pill">Git</span><span class="pill">Claude API</span><span class="pill">Linux / VPS</span><span class="pill">WordPress API</span>
+          <span class="pill">Django</span><span class="pill">FastAPI</span><span class="pill">REST APIs</span><span class="pill">SQLite</span><span class="pill">Git</span><span class="pill">Claude API</span><span class="pill">OpenAI API</span><span class="pill">Linux / VPS</span><span class="pill">WordPress</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-label">Data &amp; Operations</div>
         <div class="pill-row">
-          <span class="pill">MS Excel (Advanced)</span><span class="pill">CRM Workflows</span><span class="pill">SharePoint</span><span class="pill">SEO / Analytics</span>
+          <span class="pill">MS Excel (Advanced)</span><span class="pill">CRM Workflows</span><span class="pill">SharePoint</span><span class="pill">SEO / Analytics</span><span class="pill">Google Workspace</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-label">Core Competencies</div>
         <div class="pill-row">
-          <span class="pill">Data Quality</span><span class="pill">Independent Initiative</span><span class="pill">SaaS Product Building</span><span class="pill">Documentation</span>
+          <span class="pill">Data Quality</span><span class="pill">Independent Initiative</span><span class="pill">Detail-Oriented</span><span class="pill">SaaS Product Building</span><span class="pill">Cross-Functional Coordination</span><span class="pill">Documentation</span>
         </div>
       </div>
     </section>
