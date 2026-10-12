@@ -547,7 +547,7 @@
               <span class="tag tag-featured">🏆 BMW Hackathon</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">SQLite</span><span class="tag">Computer Vision</span><span class="tag">Automated Testing</span>
             </div>
             <h3>BMW DMC AI Verifier</h3>
-            <p>Team hackathon project (Oct 2026) building a scanning and validation tool for BMW's real GS91010-2 Data Matrix Code part-marking standard — scans a part's code via live camera or uploaded photo, decodes it, and checks it against 26 real GS91010-2 layouts. My contributions: the rule validation engine, a self-healing auto-correction engine that recovers codes damaged by up to ~30%, and camera-scanning reliability improvements including automatic symbol localization and an ISO 29158-style defect visualization. Verified with 160+ backend and 50+ frontend automated tests.</p>
+            <p>Team hackathon project (Innovation Challenge, Oct 2026) building a scanning and validation tool for BMW's part-marking requirements — scans a part's code via live camera or uploaded photo, decodes it, and checks it against 26 real code layouts. My contributions: the rule validation engine, a self-healing auto-correction engine that recovers codes damaged by up to ~30%, and camera-scanning reliability improvements including automatic symbol localization and an ISO 29158-style defect visualization. Verified with 160+ backend and 50+ frontend automated tests.</p>
             <div class="project-actions">
               <button type="button" class="read-more-btn" data-detail="bmw">
                 Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
@@ -774,7 +774,7 @@
               <span class="tag tag-featured">🏆 BMW-Hackathon</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">SQLite</span><span class="tag">Computer Vision</span><span class="tag">Automatisiertes Testing</span>
             </div>
             <h3>BMW DMC AI Verifier</h3>
-            <p>Team-Hackathon-Projekt (Okt. 2026) für ein Scan- und Validierungstool nach BMWs realem Teilekennzeichnungsstandard GS91010-2 für Data-Matrix-Codes — scannt den Code eines Teils per Live-Kamera oder hochgeladenem Foto, dekodiert ihn und prüft ihn gegen 26 reale GS91010-2-Layouts. Meine Beiträge: die regelbasierte Validierungs-Engine, eine selbstheilende Auto-Korrektur-Engine, die bis zu ~30% beschädigte Codes wiederherstellt, sowie verbesserte Kamera-Scan-Zuverlässigkeit inklusive automatischer Symbol-Lokalisierung und einer Fehler-Visualisierung im Stil von ISO 29158. Verifiziert mit 160+ Backend- und 50+ Frontend-Tests.</p>
+            <p>Team-Hackathon-Projekt (Innovation Challenge, Okt. 2026) für ein Scan- und Validierungstool nach BMWs Teilekennzeichnungs-Vorgaben — scannt den Code eines Teils per Live-Kamera oder hochgeladenem Foto, dekodiert ihn und prüft ihn gegen 26 reale Code-Layouts. Meine Beiträge: die regelbasierte Validierungs-Engine, eine selbstheilende Auto-Korrektur-Engine, die bis zu ~30% beschädigte Codes wiederherstellt, sowie verbesserte Kamera-Scan-Zuverlässigkeit inklusive automatischer Symbol-Lokalisierung und einer Fehler-Visualisierung im Stil von ISO 29158. Verifiziert mit 160+ Backend- und 50+ Frontend-Tests.</p>
             <div class="project-actions">
               <button type="button" class="read-more-btn" data-detail="bmw-de">
                 Mehr lesen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
@@ -1446,23 +1446,23 @@
       <div class="detail-head">
         <h3>BMW DMC AI Verifier</h3>
         <p class="detail-tagline">FastAPI · Python · TypeScript · SQLite · Pydantic · zxing-wasm · Computer Vision · Automated Testing</p>
-        <p class="detail-role">Role: Team hackathon project (Oct 2026) &nbsp;·&nbsp; Not an official BMW tool — built around BMW's published standard</p>
+        <p class="detail-role">Role: Team hackathon project, Innovation Challenge (Oct 2026) &nbsp;·&nbsp; Not an official BMW tool</p>
         <div class="detail-stats">
-          <span class="stat-chip">26 GS91010-2 layouts validated</span>
+          <span class="stat-chip">26 real code layouts validated</span>
           <span class="stat-chip">Auto-repairs codes damaged up to ~30%</span>
           <span class="stat-chip">160+ backend · 50+ frontend tests</span>
         </div>
       </div>
       <div class="detail-body">
         <h4>What it is</h4>
-        <p>A web app that scans Data Matrix Codes — the 2D codes laser-marked or stamped onto automotive parts — using a live camera or an uploaded photo, decodes them, and checks them against BMW's real GS91010-2:2024-12 part-marking standard: the spec that defines exactly how these codes must be structured (dates, day-of-year encoding, batch and part data, and more).</p>
+        <p>A web app that scans Data Matrix Codes — the 2D codes laser-marked or stamped onto automotive parts. It reads them from a live camera or an uploaded photo, decodes them, and checks them against BMW's part-marking requirements.</p>
 
         <h4>The problem</h4>
         <p>Part-marking codes are easy to get wrong: a bad date field, a malformed data segment, a print damaged during manufacturing. The official standard that defines "correct" is a long, dense specification nobody checks by eye. A code that fails silently breaks traceability further down the line, where recalls, warranty claims, and supply chain audits all depend on being able to reliably read it back.</p>
 
         <h4>What I built</h4>
         <ul>
-          <li><strong>Rule validation engine</strong> covering 26 real layouts from the GS91010-2 standard: decodes every field in a scanned code and checks it against every layout it could plausibly match, ranking matches by plausibility when more than one fits.</li>
+          <li><strong>Rule validation engine</strong> covering 26 real code layouts: decodes every field in a scanned code and checks it against every layout it could plausibly match, ranking matches by plausibility when more than one fits.</li>
           <li><strong>Self-healing auto-correction engine:</strong> when a code fails, it tries plausible single-character fixes — the kind of error a damaged print or a misread scan produces — and can recover codes with up to roughly 25–30% damage, suggesting a likely repair without ever changing the actual pass/fail verdict.</li>
           <li><strong>Camera-scanning reliability improvements:</strong> automatic symbol localization so the app crops to the actual code in frame instead of decoding a whole noisy camera image, which measurably improved real-world scan success.</li>
           <li>An <strong>ISO 29158-style defect visualization</strong> showing exactly where and why a code failed, instead of a plain pass/fail message.</li>
@@ -1470,7 +1470,7 @@
         </ul>
 
         <h4>Why it's useful</h4>
-        <p>Turns a manual, spec-lookup-heavy quality check into an instant scan-and-explain result: point a camera at a part, get a verdict, and if it fails, get a plain-English explanation of exactly which field is wrong plus a suggested fix — without anyone needing the GS91010-2 standard memorized.</p>
+        <p>Turns a manual, spec-lookup-heavy quality check into an instant scan-and-explain result: point a camera at a part, get a verdict, and if it fails, get a plain-English explanation of exactly which field is wrong plus a suggested fix — without anyone needing the rules memorized.</p>
 
         <h4>Tech stack</h4>
         <p>Python, FastAPI, TypeScript, SQLite, Pydantic, zxing-wasm (Data Matrix decoding), the Effect library (TypeScript), HTMX, Canvas-based image processing for camera capture and cropping, an AI layer for plain-English explanations only — the rule engine alone decides valid/invalid — plus Pytest and Jasmine for automated testing.</p>
@@ -1484,23 +1484,23 @@
       <div class="detail-head">
         <h3>BMW DMC AI Verifier</h3>
         <p class="detail-tagline">FastAPI · Python · TypeScript · SQLite · Pydantic · zxing-wasm · Computer Vision · Automatisiertes Testing</p>
-        <p class="detail-role">Rolle: Team-Hackathon-Projekt (Okt. 2026) &nbsp;·&nbsp; Kein offizielles BMW-Tool — entwickelt rund um BMWs veröffentlichten Standard</p>
+        <p class="detail-role">Rolle: Team-Hackathon-Projekt, Innovation Challenge (Okt. 2026) &nbsp;·&nbsp; Kein offizielles BMW-Tool</p>
         <div class="detail-stats">
-          <span class="stat-chip">26 GS91010-2-Layouts validiert</span>
+          <span class="stat-chip">26 reale Code-Layouts validiert</span>
           <span class="stat-chip">Repariert bis zu ~30% beschädigte Codes</span>
           <span class="stat-chip">160+ Backend- · 50+ Frontend-Tests</span>
         </div>
       </div>
       <div class="detail-body">
         <h4>Was es ist</h4>
-        <p>Eine Web-App, die Data-Matrix-Codes — die 2D-Codes, die auf Automobilteile lasermarkiert oder gestanzt werden — per Live-Kamera oder hochgeladenem Foto scannt, dekodiert und gegen BMWs realen Teilekennzeichnungsstandard GS91010-2:2024-12 prüft: die Spezifikation, die exakt festlegt, wie diese Codes aufgebaut sein müssen (Datumsfelder, Jahrestag-Kodierung, Chargen- und Teiledaten und mehr).</p>
+        <p>Eine Web-App, die Data-Matrix-Codes scannt — die 2D-Codes, die auf Automobilteile lasermarkiert oder gestanzt werden. Sie liest sie per Live-Kamera oder hochgeladenem Foto, dekodiert sie und prüft sie gegen BMWs Teilekennzeichnungs-Vorgaben.</p>
 
         <h4>Das Problem</h4>
         <p>Teilekennzeichnungscodes lassen sich leicht falsch erzeugen: ein fehlerhaftes Datumsfeld, ein missgebildetes Datensegment, ein durch die Fertigung beschädigter Druck. Der offizielle Standard, der „korrekt" definiert, ist eine lange, dichte Spezifikation, die niemand per Augenschein prüft. Ein Code, der stillschweigend fehlschlägt, bricht die Rückverfolgbarkeit weiter unten in der Kette — dort, wo Rückrufe, Garantiefälle und Lieferketten-Audits alle davon abhängen, ihn zuverlässig auslesen zu können.</p>
 
         <h4>Was ich gebaut habe</h4>
         <ul>
-          <li><strong>Regelbasierte Validierungs-Engine</strong> für 26 reale Layouts aus dem GS91010-2-Standard: dekodiert jedes Feld eines gescannten Codes und prüft es gegen jedes Layout, das plausibel passen könnte — bei mehreren Treffern werden sie nach Plausibilität geordnet.</li>
+          <li><strong>Regelbasierte Validierungs-Engine</strong> für 26 reale Code-Layouts: dekodiert jedes Feld eines gescannten Codes und prüft es gegen jedes Layout, das plausibel passen könnte — bei mehreren Treffern werden sie nach Plausibilität geordnet.</li>
           <li><strong>Selbstheilende Auto-Korrektur-Engine:</strong> Schlägt ein Code fehl, versucht die Engine plausible Ein-Zeichen-Korrekturen — die Art von Fehler, die ein beschädigter Druck oder ein Fehlscan verursacht — und kann Codes mit bis zu rund 25–30% Beschädigung wiederherstellen und einen wahrscheinlichen Reparaturvorschlag liefern, ohne jemals das eigentliche Gültig/Ungültig-Urteil zu verändern.</li>
           <li><strong>Verbesserte Kamera-Scan-Zuverlässigkeit:</strong> automatische Symbol-Lokalisierung, sodass die App auf den tatsächlichen Code im Bild zuschneidet, statt ein verrauschtes Gesamtbild zu dekodieren — was die reale Scan-Erfolgsquote messbar verbesserte.</li>
           <li>Eine <strong>Fehler-Visualisierung im Stil von ISO 29158</strong>, die genau zeigt, wo und warum ein Code fehlgeschlagen ist, statt einer einfachen Gültig/Ungültig-Meldung.</li>
@@ -1508,7 +1508,7 @@
         </ul>
 
         <h4>Warum es nützlich ist</h4>
-        <p>Verwandelt eine manuelle, nachschlagelastige Qualitätsprüfung in ein sofortiges Scan-und-Erklär-Ergebnis: Kamera auf das Teil halten, Urteil erhalten — und bei einem Fehlschlag eine klartextliche Erklärung, welches Feld genau falsch ist, plus einen Korrekturvorschlag, ganz ohne den GS91010-2-Standard auswendig zu kennen.</p>
+        <p>Verwandelt eine manuelle, nachschlagelastige Qualitätsprüfung in ein sofortiges Scan-und-Erklär-Ergebnis: Kamera auf das Teil halten, Urteil erhalten — und bei einem Fehlschlag eine klartextliche Erklärung, welches Feld genau falsch ist, plus einen Korrekturvorschlag, ganz ohne die Vorgaben auswendig zu kennen.</p>
 
         <h4>Tech-Stack</h4>
         <p>Python, FastAPI, TypeScript, SQLite, Pydantic, zxing-wasm (Data-Matrix-Dekodierung), die Effect-Bibliothek (TypeScript), HTMX, Canvas-basierte Bildverarbeitung für Kamera-Capture und Zuschnitt, eine KI-Schicht ausschließlich für klartextliche Erklärungen — die Regel-Engine allein entscheidet über gültig/ungültig — sowie Pytest und Jasmine für automatisiertes Testing.</p>
